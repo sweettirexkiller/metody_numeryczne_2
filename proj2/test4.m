@@ -9,6 +9,11 @@ function [] = test4()
 % WYJŚCIE:
 %   -
 
+
+tol = 10^-8;
+LIMIT = 10^3;
+
+
 fprintf("Testy poprawności eliminacji gaussa dla macierzy A(5 na 5) :\n")
 A = [4, 2, 1, 2, 3];
 B = [1, 2, 3, 4];

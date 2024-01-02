@@ -2,47 +2,43 @@ function [] = test1()
 %TEST0
 % Piotr Jankiewicz, 288767
 %
-% Funckja testujaca P2Z46_InversePowerMethod
+% Funckja testujaca P2Z14_InversePowerMethod
 %
 % WEJŚĆIE:
 %   -
 % WYJŚCIE:
 %   -
 
-fprintf("Testy działania poprawności dla macierzy 5 na 5. \nWartości własne macierzy to 2, 3, 4, 5, 6.:\n")
+
+tol = 10^-8;
+LIMIT = 10^3;
+
 A = diag(2*ones(1,5),0) + diag(-1*ones(1,4),1) + diag(-1*ones(1,4),-1);
 main_diag = diag(A); % main diagonal elements
 upper_diag = diag(A,1); % upper diagonal elements
 lower_diag = diag(A,-1); % lower diagonal elements
-disp(A);
+
+% disp(A);
+eigenValues = eig(A);
+
+
+disp(['Testy działania poprawności dla macierzy 5 na 5. Wartości własne macierzy to  [' num2str(eigenValues(:).') ']']) ;
 
 fprintf("\n");
 
 tic
-fprintf("Test 1 - poprwanosc wyniku dla miu=4.7 (oczekiwana nabliższa wartosc wlasna to 5)\n");
-[l,x, i] = P2Z46_InversePowerMethod(5, main_diag,upper_diag, lower_diag, 4.7);
-fprintf("   - wynik lambda=%d, l.iteracji=%d\n", [l,i]);
-toc
+fprintf("Test 1 \n - poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to 0.26795\n");
+[l,~, i] = P2Z14_InversePowerMethod(5, main_diag,upper_diag, lower_diag,tol, LIMIT);
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
 
-fprintf("\n");
-tic
-fprintf("Test 2 - poprwanosc wyniku dla miu=10 (oczekiwana nabliższa wartosc wlasna to 6)\n");
-[l,x, i] = P2Z46_InversePowerMethod(5, main_diag,upper_diag, lower_diag, 10);
-fprintf("   - wynik lambda=%d, l.iteracji=%d\n", [l,i]);
-toc
 
-fprintf("\n");
-tic
-fprintf("Test 3 - poprwanosc wyniku dla miu=20 (oczekiwana nabliższa wartosc wlasna to 6)\n");
-[l,x, i] = P2Z46_InversePowerMethod(5, main_diag,upper_diag, lower_diag, 20);
-fprintf("   - wynik lambda=%d, l.iteracji=%d\n", [l,i]);
-toc
+format short
 
-fprintf("\n");
-tic
-fprintf("Test 4 - poprwanosc wyniku dla miu=0 (oczekiwana nabliższa wartosc wlasna to 2)\n");
-[l,x, i] = P2Z46_InversePowerMethod(5, main_diag,upper_diag, lower_diag, 0.01);
-fprintf("   - wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+smallest = min(eigenValues);
+
+fprintf("- funkcja matlabowa wygenerowała najmniejszą wartość własną: %d\n", smallest);
+fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,smallest,abs(l - smallest));
+
 toc
 
 end
