@@ -99,11 +99,11 @@ end
 % lambda = (x_k'*A*x_k)/(x_k'*x_k) ????
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Ax_k  = matrixVectorMultiplication(diag,du,dd,x_k);
-nominator = dot(x_k, Ax_k);
-denominator = dot(x_k,  x_k);
-lambda = nominator / denominator;
 
+lambda = x_k * matrixVectorMultiplication(diag,du,dd,x_k')) / 
+
+lambda = (prev'*x_k)/(prev'*prev);
+    
 x_k = x_k';
 iter = iterations;
     
