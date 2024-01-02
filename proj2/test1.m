@@ -10,8 +10,10 @@ function [] = test1()
 %   -
 
 
+clc();
+
 tol = 10^-8;
-LIMIT = 10^3;
+LIMIT = 10^4;
 
 A = diag(2*ones(1,5),0) + diag(-1*ones(1,4),1) + diag(-1*ones(1,4),-1);
 main_diag = diag(A); % main diagonal elements
@@ -27,6 +29,7 @@ disp(['Testy działania poprawności dla macierzy 5 na 5. Wartości własne maci
 fprintf("\n");
 
 tic
+fprintf("Test 1 - poprwanosc wyniku dla tolerancji=%d i limitu iteracji: %d\n", tol, LIMIT);
 fprintf("Test 1 \n - poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to 0.26795\n");
 [l,~, i] = P2Z14_InversePowerMethod(5, main_diag,upper_diag, lower_diag,tol, LIMIT);
 fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);

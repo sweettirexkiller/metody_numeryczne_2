@@ -9,6 +9,9 @@ function [] = test0()
 % WYJŚCIE:
 %   -
 
+
+clc();
+
 tol = 10^-8;
 LIMIT = 10^3;
 
@@ -29,6 +32,7 @@ upper_diag = diag(A,1); % upper diagonal elements
 lower_diag = diag(A,-1); % lower diagonal elements
 
 tic
+fprintf("Test 0 - poprwanosc wyniku dla tolerancji=%d i limitu iteracji: %d\n", tol, LIMIT);
 fprintf("Test 0 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to 0.2538\n");
 [l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,tol, LIMIT);
 fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);

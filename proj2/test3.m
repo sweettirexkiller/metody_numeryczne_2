@@ -9,15 +9,19 @@ function [] = test3()
 % WYJŚCIE:
 %   -
 
+clc();
+
 tol = 10^-8;
 LIMIT = 10^3;
 
-fprintf("Testy poprawności dla macierzy A(3 na 3) :\n")
+fprintf("Testy poprawności funkcji rozkładu macierzy odbiciami Householdera dla macierzy A(3 na 3) :\n")
 A = diag(2*ones(1,3),0) + diag(-1*ones(1,2),1) + diag(-1*ones(1,2),-1);
 
 disp(A);
 fprintf("Naciśnij dowolny klawisz.\n");
 pause;
+
+clc();
 
 main_diag = diag(A); % main diagonal elements
 upper_diag = diag(A,1); % upper diagonal elements
@@ -34,6 +38,9 @@ disp(Rown);
 fprintf("Naciśnij dowolny klawisz.\n");
 pause;
 
+
+
+
 fprintf("Wynik R funkcji wbudowanej (prawidłowy):\n");
 [Q,R] = qr(A);
 
@@ -41,6 +48,8 @@ fprintf("Wynik R funkcji wbudowanej (prawidłowy):\n");
 disp(R);
 fprintf("Naciśnij dowolny klawisz.\n");
 pause;
+
+clc();
 
 fprintf("Wynik Q własnej funkcji:\n");
 QOwn = eye(3);
@@ -61,7 +70,6 @@ QOwn = eye(3);
  fprintf("Wynik Q wbudowanej funkcji:\n");
     disp(Q);
   
-
 
 end
 

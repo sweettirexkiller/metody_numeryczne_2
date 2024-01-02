@@ -9,6 +9,10 @@ function [] = test2()
 % WYJŚCIE:
 %   -
 
+
+clc();
+
+
 tol = 10^-8;
 LIMIT = 10^3;
 
@@ -26,6 +30,7 @@ disp(['Testy działania poprawności dla macierzy 3 na 3. Wartości własne maci
 fprintf("\n");
 
 tic
+fprintf("Test 2 - poprwanosc wyniku dla tolerancji=%d i limitu iteracji: %d\n", tol, LIMIT);
 fprintf("Test 2 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to 0.58579\n");
 [l,~, i] = P2Z14_InversePowerMethod(3, main_diag,upper_diag, lower_diag,tol, LIMIT);
 fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);

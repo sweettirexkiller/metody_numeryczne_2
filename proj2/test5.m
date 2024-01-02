@@ -9,9 +9,11 @@ function [] = test5()
 % WYJŚCIE:
 %   -
 
+clc();
+
 
 tol = 10^-8;
-LIMIT = 10^5;
+LIMIT = 10^3;
 
 n=2000;
 low = -99;
@@ -24,15 +26,17 @@ matrix = diagonalsToMatrix(diagonal, diagUpper, diagLower);
 
 eigenValues = eig(matrix);
 
-disp(['Testy działania poprawności dla macierzy 2000 na 2000. Wartości własne macierzy to  [' num2str(eigenValues(:).') ']']) ;
+disp(['Testy działania poprawności dla macierzy 2000 na 2000. Wartości własne macierzy to']); 
+disp(['[' num2str(eigenValues(:).') ']']) ;
 
 
 format short
 
 tic
-fprintf("Test 1 - poprwanosc wyniku dla\n");
+fprintf("Test 5 - poprwanosc wyniku dla tolerancji=%d i limitu iteracji: %d\n", tol, LIMIT);
+
 [l,~, i] = P2Z14_InversePowerMethod(n, diagonal,diagLower, diagUpper, tol, LIMIT);
-fprintf("   - wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
 
 
 
