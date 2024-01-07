@@ -1,12 +1,13 @@
-function [lambda, x_k, iter] = P2Z14_InversePowerMethod(n, diag, du, dd, tol, LIMIT)
+function [lambda, x_k, iter] = P2Z14_InversePowerMethod(n, diag, du, dd, miu, tol, LIMIT)
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 % 
 % Funkcja P2Z46_InversePowerMethod
 %
 % Odnajdywanie wartości własnej macieży A najbliżej podanej 
-% wartości miu od metodą potęgową z normowaniem dla 
+% wartości miu metodą odwrotną potęgową z normowaniem dla 
 % macierzy trójdiagonalnej 
+%
 % WEJŚĆIE:
 %    n      - size of matrix A (n x n)
 %    d      - od diagonal, wektor wartosci z diagonali macierzy A
@@ -15,6 +16,8 @@ function [lambda, x_k, iter] = P2Z14_InversePowerMethod(n, diag, du, dd, tol, LI
 %    tol    - granica dokładnosci wykonywanych iteracji 
 %    LIMIT  - limit liczby iteracji, dla których procedura zostanie
 %             przerwana
+%    miu    - podana wartosc dla ktorej bedzie szukana najblisza wartosc wlasna
+%                 macierzy A
 % WYJŚCIE:
 %    lambda     - znaleziona wartosc wlasna najblizsza miu
 %    x_k        - znaleziony wektor własny 
@@ -27,13 +30,20 @@ function [lambda, x_k, iter] = P2Z14_InversePowerMethod(n, diag, du, dd, tol, LI
 %%%%%%%%%%%%% FIRST PART %%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change diagonal to get A - miu * I
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dI = ones(1, n);
+AlessMiuIDiag = diag - miu.*dI';
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1) QR decomposition of A with 
 %    Householder Reflectors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[rd, r1ud, r2ud, H] = housholderQRDecomposition(n, diag, du, dd, tol);
+[rd, r1ud, r2ud, H] = housholderQRDecomposition(n, AlessMiuIDiag, du, dd, tol);
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% SECOND PART %%%%%%%%%%%%%%
@@ -96,7 +106,7 @@ end
      
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%s
 % 1) find eigen value for eigen vector x_k form A*x_k = lambda * x_k;
-% lambda = (x_k'*A*x_k)/(x_k'*x_k) ????
+% lambda = (x_k'*A*x_k)/(x_k'*x_k) 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Ax_k  = matrixVectorMultiplication(diag,du,dd,x_k);
