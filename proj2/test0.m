@@ -31,22 +31,91 @@ main_diag = diag(A); % main diagonal elements
 upper_diag = diag(A,1); % upper diagonal elements
 lower_diag = diag(A,-1); % lower diagonal elements
 
-tic
-fprintf("Test 0 - poprwanosc wyniku dla tolerancji=%d i limitu iteracji: %d\n", tol, LIMIT);
-fprintf("Test 0 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to 0.2538\n");
-[l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,tol, LIMIT);
-fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+
+
+fprintf("- przyjęta tolerancja=%d i limit iteracji: %d\n Macierz A:\n", tol, LIMIT);
+
+disp(A);
+
+fprintf("Naciśnij dowolny klawisz.\n");
+pause;
+
+clc();
 
 eigenValues = eig(A);
+miu = 2;
+[val,idx]=min(abs(eigenValues-miu));
+minVal=eigenValues(idx);
+
+
+fprintf("Test 0:1 miu=2\n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna to %d\n", minVal);
+tic
+[l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,miu,tol, LIMIT);
+toc
+
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+
 
 format short
 
-smallest = min(eigenValues);
+fprintf("- funkcja matlabowa wygenerowała najmniejszą wartość własną: %d\n", minVal);
+fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,minVal,abs(l - minVal));
 
-fprintf("- funkcja matlabowa wygenerowała najmniejszą wartość własną: %d\n", smallest);
-fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,smallest,abs(l - smallest));
+fprintf("Naciśnij dowolny klawisz.\n");
+pause;
 
+clc();
+
+miu = 3;
+[val,idx]=min(abs(eigenValues-miu));
+minVal=eigenValues(idx);
+
+fprintf("Test 0:2 miu=3 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna dla miu=3 to %d\n", minVal);
+
+tic
+[l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,miu,tol, LIMIT);
 toc
+
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,minVal,abs(l - minVal));
+
+
+fprintf("Naciśnij dowolny klawisz.\n");
+pause;
+
+clc();
+
+miu = 5;
+[val,idx]=min(abs(eigenValues-miu));
+minVal=eigenValues(idx);
+
+fprintf("Test 0:3 miu=5 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna dla miu=5 to %d\n", minVal);
+
+tic
+[l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,miu,tol, LIMIT);
+toc
+
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,minVal,abs(l - minVal));
+
+
+fprintf("Naciśnij dowolny klawisz.\n");
+pause;
+
+clc();
+
+miu = 8;
+[val,idx]=min(abs(eigenValues-miu));
+minVal=eigenValues(idx);
+
+fprintf("Test 0:3 miu=8 LIMIT=3000 \n- poprawność wyniku - oczekiwana najmniejsza wartosc wlasna dla miu=8 to %d\n", minVal);
+
+tic
+[l,x, i] = P2Z14_InversePowerMethod(10, main_diag,upper_diag, lower_diag,miu,tol, 3000);
+toc
+
+fprintf("- wynik lambda=%d, l.iteracji=%d\n", [l,i]);
+fprintf("- różnica między wynikiem własnym a bibliotecznym:  abs(%d - %d )= %d\n", l,minVal,abs(l - minVal));
 
 
 
