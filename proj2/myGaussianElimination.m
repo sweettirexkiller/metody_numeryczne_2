@@ -11,7 +11,7 @@ function y = myGaussianElimination(A, B, C, x)
 % WEJŚĆIE:
 %    A      - wektor wartosci z diagonali macierzy A
 %    B      - wektor wartosci z jeden rzad wyzej od diagonali 
-%    C      - wektor wartosci z jeden rzad nizej od diagonali 
+%    C      - wektor wartosci z dwa rzedy wyzej od diagonali 
 %   
 % WYJŚCIE:
 %    y      - wektor rozwiaania Ey = x
