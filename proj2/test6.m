@@ -1,3 +1,4 @@
+
 function [] = test6()
 %TEST1 
 % Piotr Jankiewicz, 288767

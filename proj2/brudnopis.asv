@@ -1,0 +1,14 @@
+A = [1 1; 1 2];
+x = A(:,1);
+
+x_norm = norm(x);
+
+[x_num_rows, x_num_cols] = size(x);
+
+x_prime = x_norm * eye(x_num_rows, 1);
+
+x_prime
+
+u = x - x_prime;
+
+H 
