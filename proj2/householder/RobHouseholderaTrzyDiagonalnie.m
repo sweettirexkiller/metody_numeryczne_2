@@ -32,8 +32,7 @@ q = zeros([1,n-1]);
         disp(['Zerujemy kolumne i = ', num2str(i)]);
     
         x = [b(i); a(i)];
-        [y1, h1,h2] = RobHousholdera(x(1), x(2));
-        H = [h1, h2];
+        [y1, H] = RobHousholdera(x(1), x(2));
         Householdery(:,:, i) = H;
     
         if(i < n -1) % nie jest to przed ostatnia kolumna
@@ -51,9 +50,7 @@ q = zeros([1,n-1]);
     
             disp(sprawdzenie);
     
-        end 
-    
-        if(i == n - 1) % jest to przedostatnia kolumna - biedzie 2x2 i bez nadpisywania s
+        else % jest to przedostatnia kolumna - biedzie 2x2 i bez nadpisywania s
     
             czesc_wejsciowej = [b(i) c(i); a(i) b(i+1)];
             przetransformowana = H*czesc_wejsciowej;

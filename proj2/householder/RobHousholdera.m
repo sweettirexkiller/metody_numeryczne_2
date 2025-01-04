@@ -1,4 +1,4 @@
-function [y1, h1, h2] = RobHouseholdera(x1,x2)
+function [y1, H] = RobHouseholdera(x1,x2)
 % Projekt 2, zadanie XXXX
 % Piotr Jankiewicz, 288767
 % 
@@ -30,8 +30,8 @@ I = eye(2,2);
 H = I - (2*(u)*u')/(u'*u);
 
 
-h1 = H(:,1);
-h2= H(:, 2);
+% h1 = H(:,1);
+% h2= H(:, 2);
 
 y = H*x;
 
