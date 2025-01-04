@@ -23,7 +23,7 @@ b_new = zeros(1, n);
 c_new = zeros(1, n -1);
 s_new = zeros(1, n-2);
 
-%rozpoczynamy moznenie
+%rozpoczynamy moznenie przez Q
 
 for i = (n-1: -1:1)
    if(i == n -1)

@@ -1,0 +1,53 @@
+addpath("householder");
+a = [5,6,7];
+b = [1,2,3,4];
+c = [8,9,10];
+
+n = size(b);
+n = n(2);
+
+% macierz 4x4
+%  1  8  0  0
+%  5  2  9  0
+%  0  6  3  10
+%  0  0  7  4
+
+
+[p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
+
+
+% tutaj chcemy zrobić Q^t*b, gdzie b to jakiś przykladowy wektor rozmiaru n
+
+b = [1;2;3;4];
+b
+
+b_new = zeros(4,1);
+
+% Q^t = Hn-1 * Hn-2*.....*H1;
+% Q^t*b = Hn-1*Hn-2.....*H1;
+
+
+
+%najpierw mnozymy przez H1, i=1
+H1 = Householdery(:,:,1);
+
+b_1 = b(1:2,1);
+
+b(1:2, 1) = H1*b_1;
+
+%potem H2, i = 2
+H2 = Householdery(:,:,2);
+
+b_2 = b(2:3,1);
+
+b(2:3, 1) = H2*b_2;
+
+%potem H3, i = 2 == n - 1
+H3 = Householdery(:,:,3);
+
+b_3 = b(3:4,1);
+
+b(3:3, 1) = H2*b_2;
+
+
+
