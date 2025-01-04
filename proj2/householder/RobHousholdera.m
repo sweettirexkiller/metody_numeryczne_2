@@ -13,17 +13,20 @@ function [y1, H] = RobHouseholdera(x1,x2)
 %    h1  - pierwsza kolumna reflektora
 %    h2  - droga kolumna reflektora
 
-y1 = 0;
-h1 = 0;
-h2 = 0;
-
 x = [x1; x2;];
 
 x_norm = norm(x);
 
 x_prime = x_norm * eye(2, 1);
 
+% dostosowanie znaku x_prime dla stabilnosci numerycznej
+if x(1) < 0
+    x_prime = -x_prime;
+end
+
 u = x - x_prime;
+
+u = u / norm(u); % normalizacja
 
 I = eye(2,2);
 

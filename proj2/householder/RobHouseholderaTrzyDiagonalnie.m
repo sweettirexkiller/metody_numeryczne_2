@@ -29,7 +29,7 @@ p = zeros([1,n]);
 q = zeros([1,n-1]);
 
     for i = 1:(n-1)
-        disp(['Zerujemy kolumne i = ', num2str(i)]);
+        % disp(['Zerujemy kolumne i = ', num2str(i)]);
     
         x = [b(i); a(i)];
         [y1, H] = RobHousholdera(x(1), x(2));
@@ -46,9 +46,9 @@ q = zeros([1,n-1]);
             s(i) = przetransformowana(1,3);
             c(i+1) = przetransformowana(2,3);
     
-            sprawdzenie = [b(1) c(1) s(1) 0 ; a(1) b(2) c(2) s(2); 0 a(2) b(3) c(3); 0 0 a(3) b(4)];
-    
-            disp(sprawdzenie);
+            % sprawdzenie = [b(1) c(1) s(1) 0 ; a(1) b(2) c(2) s(2); 0 a(2) b(3) c(3); 0 0 a(3) b(4)];
+            % 
+            % disp(sprawdzenie);
     
         else % jest to przedostatnia kolumna - biedzie 2x2 i bez nadpisywania s
     
