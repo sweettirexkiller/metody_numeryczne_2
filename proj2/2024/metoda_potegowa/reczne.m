@@ -42,46 +42,25 @@ disp(max_eigenvector');
 [p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
 
 %wybor x 
-x_0 = eye(n,1);
+x_0 = eye(1,n);
 
 % _______________________ krok 1
 
-% mnozymy R*x = c 
+% 1) mnozymy R*x = c 
+% 2) rozwiazujemy c = H*b by dostac b
 
-
-% rozwiazujemy c = H*b by dostac b
-
-%A*x_1 = b_1;
-b_1 = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, x);
-
-% c_1 = H*b_1; (H*b_1 = Q^t*b_1);
-
-[c_1] = mnozenieQtransponowanePrzezWektor(Householdery, b_1);
-
-% Rx_1 = c_1 - rozwiaz dla x_1
-
-x_1 = trojdiagonalny_gauss(p, q, s, c_1);
-
-%normalizujemy x 
+b_1 = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, x_0);
+x_1 = b_1;
 x_1 = x_1/sqrt(x_1'*x_1);
-
+x_1'
 
 % _______________________ krok 2
 
 
-%A*x_1 = b_1;
 b_2 = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, x_1);
-
-% c_2 = H*b_2; (H*b_3 = Q^t*b_2);
-
-[c_2] = mnozenieQtransponowanePrzezWektor(Householdery, b_2);
-
-% Rx_2 = c_2 - rozwiaz dla x_2
-
-x_2 = trojdiagonalny_gauss(p, q, s, c_2);
-
-%normalizujemy x 
+x_2 = b_2;
 x_2 = x_2/sqrt(x_2'*x_2);
+x_2'
 
 
 
@@ -91,15 +70,6 @@ x_2 = x_2/sqrt(x_2'*x_2);
 %A*x_1 = b_1;
 b_3 = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, x_2);
 
-% c_3 = H*b_3; (H*b_3 = Q^t*b_3);
-
-[c_3] = mnozenieQtransponowanePrzezWektor(Householdery, b_3);
-
-% Rx_3 = c_3 - rozwiaz dla x_3
-
-x_3 = trojdiagonalny_gauss(p, q, s, c_3);
-
-%normalizujemy x 
+x_3 = b_3;
 x_3 = x_3/sqrt(x_3'*x_3);
-
 x_3'
