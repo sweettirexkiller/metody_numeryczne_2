@@ -7,9 +7,9 @@ function b = mnozenie_wejsciowy_trojdiagonal_wektor(A, B, C, x)
 % Funckja mnozaca Macierz trodiagonalna przez wektor x.
 %
 % WEJŚĆIE:
-%    B      - wektor wartosci z diagonali macierzy
-%    C      - wektor wartosci z jeden rzad wyzej od diagonali
-%    A      - wektor wartosci z jeden rzad nizej od diagonali
+%    B      - wektor wartosci z glownej diagonali macierzy
+%    C      - wektor wartosci z jeden rzad wyzej od glownej diagonali
+%    A      - wektor wartosci z jeden rzad nizej od glownej diagonali
 %   
 % WYJŚCIE:
 %    b      - wektor rozwiaania  = A*x;
@@ -29,9 +29,11 @@ end
 
 b = zeros(n, 1);
 b(1) = B(1)*x(1) + C(1)*x(2);
+
 for i = 2:n-1
-    C(i) = A(i-1)*x(i-1) + B(i)*x(i) + C(i)*x(i+1);
+    b(i) = A(i-1)*x(i-1) + B(i)*x(i) + C(i)*x(i+1);
 end
 b(n) = A(n-1)*x(n-1) + B(n)*x(n);
+
 
 end

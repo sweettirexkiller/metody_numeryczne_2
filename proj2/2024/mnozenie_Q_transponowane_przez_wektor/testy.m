@@ -1,6 +1,4 @@
 
-addpath("./householder/");
-addpath("./mnozenie_Q_transponowane_przez_wektor/");
 a = [5,6,7];
 b = [1,2,3,4];
 c = [8,9,10];
@@ -30,11 +28,13 @@ n = size(x);
 n = n(1);
 y_prime = y;
 
-for i = (n-1: -1:1)
+
+
+ for i = (n-1: -1:1)
     H_i = Householdery(:,:,i);
     y_prime_i = y_prime(i:i+1,1);
     y_prime(i:i+1, 1) = H_i*y_prime_i;
-end
+ end
 
 x'
 y'

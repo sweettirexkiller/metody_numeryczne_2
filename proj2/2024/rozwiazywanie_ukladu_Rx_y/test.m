@@ -17,5 +17,10 @@ x = trojdiagonalny_gauss(p, q, s, y);
 fprintf("Wynik własnej funkjci dla Rx=y: \n");
 disp(x);
 
+% 
+% y_correct = R\y';
+% 
+% y_correct'
+
 y_test = mnozenie_trojdiagonal_wektor(p,q,s, x);
 norm(y - y_test)
