@@ -26,7 +26,8 @@ function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIte
 
 
 
-
+% errEst  - oszacowanie błędu (względnego) obliczonego przybliżenia wartości własnej 
+% jest to w istocie wyznaczona w ostatniej iteracji wartość przybliżonego błędu
 
 
 %rozklad QR
@@ -40,8 +41,6 @@ x_prev = x_0;
 lamda_prev = inf;
 lambda_current = inf;
 diff = inf;
-iter = 0;
-error = 0;
 
 %zamiast petli sprawdzac tolerancje w  - abs(lambda^2  - old_lambda^2)
 while(diff > tol)
@@ -54,30 +53,21 @@ while(diff > tol)
     lambda_current = (x_prev'*x_current)\(x_prev'*x_prev);
     % 4) obliczyc czy sie zblizamy do wyniku
     diff = abs(lambda_prev - lambda_current)
-    % 5) znormalizowac
+    % 4) znormalizowac
     x_current = x_current/sqrt(x_current.'*x_current);
+
+   
+
     lambda_prev = lambda_current;
-    % 6) oblicz wartość przybliżonego błędu
-    errEst = diff;
     x_prev = x_current;
 
-    %7) zwieksz liczbe iteracji i jesli jest za duzo to wyjdz
-    iter = iter +1;
-
-    if(iter > maxIter)
-        error = 1;
-        break;
-    end
    
 end
 
+x_prev'
 
-if(error = 1)
-    % bledny wynij funkcji - maksymalna liczbna wykonanych iteracji
-    % przekroczona 
-end
-v = x_prev;
-lambda = lambda_prev;
+
+
 
 
 end
