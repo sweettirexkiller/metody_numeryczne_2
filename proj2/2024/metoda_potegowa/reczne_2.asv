@@ -15,7 +15,9 @@ disp(V); % Wektory własne (kolumny macierzy V)
 [min_eigenvalue, min_index] = min(diag(D)); % Największa wartość własna i jej indeks
 % Odpowiadający wektor własny
 min_eigenvector = V(:, min_index);
-disp("Najmniejszy: ");
+disp('Największa wartość własna:');
+disp(min_eigenvalue);
+disp("Odpowiadajacy jej wektor: ");
 disp(min_eigenvector');
 
 % ODWROTNA METODA POTEGOWA
@@ -24,12 +26,15 @@ disp(min_eigenvector');
 [p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
 
 %wybor x 
-x_0 = eye(n,1);
+
+x_0 = zeros(n,1);
+x_0(1) = rand(1);
 
 x_prev = x_0;
+lambda_current= inf;
 
 %zamiast petli sprawdzac tolerancje w  - abs(lambda^2  - old_lambda^2)
-for i = (1: +1:20)
+for i = (1: +1:10)
     % 1) oblliczyć y = Q^t * x 
     c_current = mnozenieQtransponowanePrzezWektor(Householdery, x_prev);
     % 2) roziwazac R*b = c dla b
@@ -39,18 +44,19 @@ for i = (1: +1:20)
     % x_max = max(x_current); 
     % 
     % x_current = x_current./x_max
+    lambda_current = (x_prev'*x_current)\(x_prev'*x_prev);
+    
  
     x_current = x_current/sqrt(x_current.'*x_current);
-
-    x_prev*x_current
+  
     % lambda_current = (x_prev'*x_current)/(x_prev'*x_prev);
-%
-    % lambda_current
-   % 
+    
+
     x_prev = x_current;
 
 end
 
+lambda_current
 x_prev'
 
 

@@ -24,14 +24,10 @@ function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIte
 %    errEst     - oszacowanie błędu (względnego) obliczonego przybliżenia wartości własnej 
 
 
-
-
-
-
+% przesuwamy b - miu
 
 %rozklad QR
 [p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
-
 
 %wybor x 
 x_0 = eye(n,1);
@@ -72,7 +68,7 @@ while(diff > tol)
 end
 
 
-if(error = 1)
+if(error == 1)
     % bledny wynij funkcji - maksymalna liczbna wykonanych iteracji
     % przekroczona 
 end

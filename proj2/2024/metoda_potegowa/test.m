@@ -22,3 +22,9 @@ disp(min_eigenvector');
 
 % ODWROTNA METODA POTEGOWA
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
+
+
+
+
+% testy dla dodatnich i ujemnych
+% || Av - lambda*v || <= e^-14 (lub 128*epsilon)
