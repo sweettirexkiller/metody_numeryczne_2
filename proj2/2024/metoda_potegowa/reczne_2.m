@@ -27,15 +27,14 @@ disp(min_eigenvector');
 
 %wybor x 
 
-x_0 = zeros(n,1);
-x_0(1) = rand(1);
+x_0 = rand(n,1);
 
 x_prev = x_0;
 lambda_current= inf;
 
 %zamiast petli sprawdzac tolerancje w  - abs(lambda^2  - old_lambda^2)
-for i = (1: +1:20)
-    % 1) oblliczyć y = Q^t * x 
+for i = (1: +1:40)
+    % 1) oblliczyć y = Q^t * x
     c_current = mnozenieQtransponowanePrzezWektor(Householdery, x_prev);
     % 2) roziwazac R*b = c dla b
     b_current = trojdiagonalny_gauss(p,q,s,c_current);
@@ -57,8 +56,16 @@ for i = (1: +1:20)
 end
 
 lambda_current
-x_prev'
+v = x_prev';
 
+
+% testy dla dodatnich i ujemnych
+% || Av - lambda*v || <= e^-14 (lub 128*epsilon)
+
+lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, v);
+rvalue = lambda_current*v;
+
+lvalue' - rvalue
 
 
 

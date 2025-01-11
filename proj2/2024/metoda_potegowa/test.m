@@ -1,3 +1,4 @@
+ 
 n = 4; % Rozmiar macierzy
 
 % Definiowanie diagonal
@@ -21,6 +22,9 @@ disp("Odpowiadajacy jej wektor: ");
 disp(min_eigenvector');
 
 % ODWROTNA METODA POTEGOWA
+mu = 1;
+tol = eps;
+maxIter = 1000;
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
 
 
@@ -28,3 +32,9 @@ disp(min_eigenvector');
 
 % testy dla dodatnich i ujemnych
 % || Av - lambda*v || <= e^-14 (lub 128*epsilon)
+
+
+lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c, v);
+rvalue = lambda*v;
+
+lvalue' - rvalue

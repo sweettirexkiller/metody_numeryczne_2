@@ -19,26 +19,13 @@ n = n(2);
 x = [2,3,4,5]';
 [y] = mnozenieQtransponowanePrzezWektor(Householdery, x);
 
-%test H*y = x --> powinno wrocic do x;
+%test Q*y = x --> powinno wrocic do x;
+
 
 %sprawdzenie H1*H2*H3....Hn-1*y = x
-
-    
-n = size(x);
-n = n(1);
-y_prime = y;
+y_prime = mnozenieWektorPrzezQ(Householdery, y);
 
 
-
- for i = (n-1: -1:1)
-    H_i = Householdery(:,:,i);
-    y_prime_i = y_prime(i:i+1,1);
-    y_prime(i:i+1, 1) = H_i*y_prime_i;
- end
-
-x'
-y'
-y_prime'
-
+norm(x' - y_prime')
 
 
