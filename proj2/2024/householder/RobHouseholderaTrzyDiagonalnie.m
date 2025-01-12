@@ -1,5 +1,5 @@
 function [p,q,s, Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c)
-% Projekt 2, zadanie XXXX
+% Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 % 
 % Funkcja RobHouseholderaTrzyDiagonalnie

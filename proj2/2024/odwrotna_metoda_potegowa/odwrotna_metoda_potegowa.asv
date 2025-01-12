@@ -29,17 +29,20 @@ function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIte
 %rozklad QR
 [p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
 
-%wybor x 
-x_0 = eye(n,1);
+%wybor wktora poczatkowego metody potegowej
+x_0 = rand(n,1);
 
-x_prev = x_0;
-lamda_prev = inf;
-lambda_current = inf;
-diff = inf;
-iter = 0;
-error = 0;
+%zmienne do przetrzymywania wartosci z poprzedniego kroku metody potegowej
+    x_prev = x_0;
+    lambda_current= inf;
+    lamda_prev = inf;
+    diff = inf;
+    iter = 0;
+    error = 0;
 
 %zamiast petli sprawdzac tolerancje w  - abs(lambda^2  - old_lambda^2)
+%dopoki roznica przy nastepncyh krokach nie jest mniejsza od przyjetej
+%toleracji to wykonuj krok
 while(diff > tol)
     % 1) oblliczyć y = Q^t * x 
     c_current = mnozenieQtransponowanePrzezWektor(Householdery, x_prev);
