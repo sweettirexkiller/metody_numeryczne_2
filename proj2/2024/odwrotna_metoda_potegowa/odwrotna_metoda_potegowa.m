@@ -1,79 +1,72 @@
 function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
-% 
-% Funkcja odwrotna_metoda_potegowa
 %
-% Odnajdywanie wartości własnej macieży A najbliżej podanej 
-% wartości miu metodą odwrotną potęgową z normowaniem dla 
-% macierzy trójdiagonalnej 
+% Funkcja implementuje odwrotną metodę potęgową z normowaniem dla macierzy 
+% trójdiagonalnej. Metoda znajduje wartość własną macierzy A najbliższą 
+% zadanej wartości mu.
 %
-% WEJŚĆIE:
-%    a        - pod-przekątna, wektor wartosci znajdujących się pod diagonalą macierzy A
-%    b        - przekątna, wektor wartosci znajdujących się na diagonali macierzy A
-%    c        - nad-przekątna , wektor wartosci znajdującyhc się nad diagonalą macierzy A
-%    mu      - podana wartosc dla ktorej bedzie szukana najblisza wartosc wlasna
-%               macierzy A
-%    tol      - granica dokładnosci wykonywanych iteracji 
-%    maxIter  - limit liczby iteracji, dla których procedura zostanie
-%               przerwana
-
+% WEJŚCIE:
+%   a       - wektor elementów pod-diagonalnych macierzy A
+%   b       - wektor elementów diagonalnych macierzy A
+%   c       - wektor elementów nad-diagonalnych macierzy A
+%   mu      - wartość, względem której szukana jest najbliższa wartość własna
+%   tol     - tolerancja błędu (kryterium stopu)
+%   maxIter - maksymalna dozwolona liczba iteracji
+%
 % WYJŚCIE:
-%    lambda     - znaleziona wartosc wlasna najblizsza miu (przybliżona)
-%    v          - znaleziony wektor własny 
-%    errEst     - oszacowanie błędu (względnego) obliczonego przybliżenia wartości własnej 
+%   lambda  - znaleziona wartość własna najbliższa mu (przybliżona)
+%   v       - odpowiadający znalezionej wartości własnej wektor własny
+%   errEst  - oszacowanie błędu względnego przybliżenia wartości własnej
 
+% Wyznaczenie rozmiaru macierzy
+n = length(b);
 
-% TODO: przesuwamy b - mu
+% Obliczenie rozkładu QR macierzy (A - mu*I)
+[p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b - mu, c);
 
-n = size(b);
-n = n(2);
+% Inicjalizacja wektora startowego
+x_prev = rand(n, 1);
+x_prev = x_prev / norm(x_prev);
 
-%poczatkowy rozklad QR
-[p,q,s,Householdery] = RobHouseholderaTrzyDiagonalnie(a,b,c);
-
-%wybor wktora poczatkowego metody potegowej
-x_0 = rand(n,1);
-
-%zmienne do przetrzymywania wartosci z poprzedniego kroku metody potegowej
-x_prev = x_0;
-lambda_current= inf;
+% Inicjalizacja zmiennych pomocniczych
 lambda_prev = inf;
 diff = inf;
 iter = 0;
 
-%dopoki roznica przy nastepncyh krokach nie jest mniejsza od przyjetej
-%toleracji to wykonuj krok
-while(diff > tol)
-    % 1) oblliczyć y = Q^t * x 
-    c_current = mnozenieQtransponowanePrzezWektor(Householdery, x_prev);
-    % 2) roziwazac R*b = c dla b
-    b_current = trojdiagonalny_gauss(p,q,s,c_current);
-    x_current = b_current; 
-    % 3) obliczyc lambde
-    lambda_current = (x_prev'*x_current)\(x_prev'*x_prev);
-    % 4) obliczyc czy sie zblizamy do wyniku
+% Główna pętla metody potęgowej
+while diff > tol
+    % Obliczenie y = Q^T * x
+    y = mnozenieQtransponowanePrzezWektor(Householdery, x_prev);
+    
+    % Rozwiązanie układu Rx = y
+    x_current = trojdiagonalny_gauss(p, q, s, y);
+    
+    % Obliczenie przybliżenia wartości własnej
+    lambda_current = (x_prev' * x_current) / (x_prev' * x_prev);
+    
+    % Obliczenie różnicy między kolejnymi przybliżeniami
     diff = abs(lambda_prev - lambda_current);
-    % 5) znormalizowac
-    x_current = x_current/sqrt(x_current.'*x_current);
-    lambda_prev = lambda_current;
-    % 6) oblicz wartość przybliżonego błędu
-    errEst = diff;
+    
+    % Normalizacja wektora
+    x_current = x_current / norm(x_current);
+    
+    % Aktualizacja wartości z poprzedniej iteracji
     x_prev = x_current;
-
-    %7) zwieksz liczbe iteracji i jesli jest za duzo to wyjdz
-    iter = iter +1;
-
-    % Sprawdź, czy przekroczono liczbę iteracji
+    lambda_prev = lambda_current;
+    
+    % Zwiększenie licznika iteracji
+    iter = iter + 1;
+    
+    % Sprawdzenie warunku na maksymalną liczbę iteracji
     if iter > maxIter
-        error('Maksymalna liczba iteracji została przekroczona. Algorytm nie skonwergował.');
+        error(['Przekroczono maksymalną liczbę iteracji. ','Metoda nie osiągnęła zbieżności.']);
     end
-   
 end
 
+% Przypisanie wartości wyjściowych
 v = x_prev;
-lambda = lambda_prev;
-
+lambda = 1/lambda_prev + mu;
+errEst = diff;
 
 end
-
