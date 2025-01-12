@@ -24,7 +24,7 @@ function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIte
 %    errEst     - oszacowanie błędu (względnego) obliczonego przybliżenia wartości własnej 
 
 
-% 0) przesuwamy b - mu
+% TODO: przesuwamy b - mu
 
 n = size(b);
 n = n(2);
@@ -41,7 +41,6 @@ lambda_current= inf;
 lambda_prev = inf;
 diff = inf;
 iter = 0;
-error = 0;
 
 %dopoki roznica przy nastepncyh krokach nie jest mniejsza od przyjetej
 %toleracji to wykonuj krok
@@ -65,19 +64,13 @@ while(diff > tol)
     %7) zwieksz liczbe iteracji i jesli jest za duzo to wyjdz
     iter = iter +1;
 
-    if(iter > maxIter)
-        error = 1;
-        break;
+    % Sprawdź, czy przekroczono liczbę iteracji
+    if iter > maxIter
+        error('Maksymalna liczba iteracji została przekroczona. Algorytm nie skonwergował.');
     end
    
 end
 
-iter
-
-if(error == 1)
-    % bledny wynij funkcji - maksymalna liczbna wykonanych iteracji
-    % przekroczona 
-end
 v = x_prev;
 lambda = lambda_prev;
 
