@@ -1,6 +1,6 @@
 function test1()
-% Projekt 2, zadanie X
-% [Your Name], [Your Index Number]
+% Projekt 2, zadanie 14
+% Piotr Jankiewicz, 288767
 %
 % Test poprawności działania odwrotnej metody potęgowej.
 % Sprawdza zgodność wyniku z wbudowaną funkcją eig dla macierzy
@@ -152,7 +152,6 @@ if residual_norm <= 1e-12
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
 end
-
 
 
 mu = 12;
