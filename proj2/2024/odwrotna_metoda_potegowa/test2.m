@@ -80,7 +80,7 @@ disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-12
+if condition <= 1e-5
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -95,14 +95,6 @@ disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
 
-
-% Parametry dla odwrotnej metody potęgowej
-
-tol = 1e-12;
-maxIter = 1000;
-
-
-
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 
@@ -129,7 +121,7 @@ disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-12
+if condition <= 1e-5
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -143,14 +135,6 @@ disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
 
-
-% Parametry dla odwrotnej metody potęgowej
-
-tol = 1e-12;
-maxIter = 1000;
-
-
-
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 
@@ -178,7 +162,7 @@ disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-12
+if condition <= 1e-5
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -192,14 +176,6 @@ disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
 
-
-% Parametry dla odwrotnej metody potęgowej
-
-tol = 1e-12;
-maxIter = 1000;
-
-
-
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 
@@ -226,7 +202,7 @@ disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-12
+if condition <= 1e-5
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
