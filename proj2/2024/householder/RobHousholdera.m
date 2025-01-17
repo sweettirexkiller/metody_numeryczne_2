@@ -26,10 +26,10 @@ end
 
 
 if(isreal(x))
-u = x - x_prime;
+    u = x - x_prime;
 else
-%jesli zespolone 
-% x+x1|x1|−1||x||2 e1 or x−x1|x1|−1||x||2 e1
+    %jesli zespolone 
+    % x+x1|x1|−1||x||2 e1 or x−x1|x1|−1||x||2 e1
 end
 
 
