@@ -45,10 +45,14 @@ while diff > tol
     x_current = x_current / norm(x_current, 2);
 
     % Obliczenie różnicy między kolejnymi przybliżeniami
-    current_check_value = (max(x_current)^(-1))*max(abs(x_current))*x_current;
-    previous_check_value =  (max(x_prev)^(-1))*max(abs(x_prev))*x_prev;
-    diff = norm(current_check_value - previous_check_value);
+    [~, i_max_current] = max(abs(x_current));
+    [~, i_max_prev] = max(abs(x_prev));
+    current_check_value = (1 / x_current(i_max_current)) * abs(x_current(i_max_current)) * x_current;
+    previous_check_value = (1 / x_prev(i_max_prev)) * abs(x_prev(i_max_prev)) * x_prev;
     
+    % Norma różnicy znormalizowanych wektorów
+    diff = norm(current_check_value - previous_check_value, inf);
+
     % Aktualizacja wartości z poprzedniej iteracji
     x_prev = x_current;
     % Zwiększenie licznika iteracji
