@@ -28,7 +28,7 @@ n = length(b);
 % Inicjalizacja wektora startowego
 x_prev = rand(n, 1);
 x_prev = x_prev / norm(x_prev);
-
+lambda_prev = 1;
 % Inicjalizacja zmiennych pomocniczych
 diff = inf;
 iter = 0;
@@ -42,15 +42,19 @@ while diff > tol
     x_current = trojdiagonalny_gauss(p, q, s, y);
 
     % Normalizacja wektora
-    x_current = x_current / norm(x_current, 2);
+    x_current = x_current / norm(x_current);
 
     % Obliczenie różnicy między kolejnymi przybliżeniami
-    current_check_value = (max(x_current)^(-1))*max(abs(x_current))*x_current;
-    previous_check_value =  (max(x_prev)^(-1))*max(abs(x_prev))*x_prev;
-    diff = norm(current_check_value - previous_check_value);
+    val = x_current - lambda_prev*x_prev;
+    diff = norm(val)/abs(lambda_prev);
+ 
+    %obliczenie aktualnej wartosci wlasnej
+    Av = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, x_current);
+    lambda_current = (x_current' * (Av)) / (x_current' * x_current);
     
     % Aktualizacja wartości z poprzedniej iteracji
     x_prev = x_current;
+    lambda_prev = lambda_current;
     % Zwiększenie licznika iteracji
     iter = iter + 1;
              
