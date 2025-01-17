@@ -9,35 +9,38 @@ function test2()
 % spełniają równanie własne z zadaną dokładnością.
 
 % Inicjalizacja danych testowych
-n = 10;
+n = 100;
 
 % Podprzekątna z losowymi wartościami w zakresie [-10, 10]
-a = -10 + 20 * rand(1, n-1);
+a = -100 + 200 * rand(1, n-1);
 
 % Główna przekątna z losowymi wartościami w zakresie [-10, 10]
-b = -10 + 20 * rand(1, n);
+b = -100 + 200 * rand(1, n);
 
 % Nadprzekątna z wartosciami jak a by zapewnic symetryczność, co zapewnia,
 % ze wartosci wlasne sa rzeczywiste
 c = a; % 
 
-% Konstrukcja macierzy testowej
+% % Konstrukcja macierzy testowej
 A = diag(b) + diag(c, 1) + diag(a, -1);
-disp('Macierz testowa:')
-disp(A)
+% disp('Macierz testowa:')
+% disp(A)
 
 
 % Obliczenie wartości referencyjnych za pomocą eig
 [V, D] = eig(A);
 lambdas = diag(D);
-
-[min_eigenvalue, min_index] = min(diag(D));
+% 
+% [min_eigenvalue, min_index] = min(diag(D));
 
 % Wyświetlenie wartości referencyjnych
-disp('Wartości referencyjne (eig):')
+% disp('Wartości referencyjne (eig):')
 disp(lambdas)
-disp('Odpowiadające wektory własne:')
-disp(V')
+% disp('Odpowiadające wektory własne:')
+% disp(V')
+
+% Zapis wektorów do pliku .mat
+save('wektory.mat', 'a', 'b', 'c');
 
 
 mu = 1;
@@ -50,8 +53,8 @@ pause % Czeka na naciśnięcie klawisza
 
 % Parametry dla odwrotnej metody potęgowej
 
-tol = 1e-12;
-maxIter = 10000;
+tol = eps * 100;
+maxIter = 100000;
 
 
 
@@ -62,8 +65,8 @@ maxIter = 10000;
 disp('Wyniki odwrotnej metody potęgowej:')
 disp('Znaleziona wartość własna:')
 disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
+% disp('Znaleziony wektor własny:')
+% disp(v')
 
 % Sprawdzenie równania własnego
 lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
@@ -74,13 +77,13 @@ disp('Norma residuum ||Av - λv||:')
 disp(residual_norm)
 
 
-disp('Condition value: ||Av - λv|| / ||λv||:')
+disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-5
+if condition <= 1e-11
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -102,8 +105,8 @@ pause % Czeka na naciśnięcie klawisza
 disp('Wyniki odwrotnej metody potęgowej:')
 disp('Znaleziona wartość własna:')
 disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
+% disp('Znaleziony wektor własny:')
+% disp(v')
 
 % Sprawdzenie równania własnego
 lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
@@ -115,13 +118,13 @@ disp('Norma residuum ||Av - λv||:')
 disp(residual_norm)
 
 
-disp('Condition value: ||Av - λv|| / ||λv||:')
+disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-5
+if condition <= 1e-11
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -142,8 +145,8 @@ pause % Czeka na naciśnięcie klawisza
 disp('Wyniki odwrotnej metody potęgowej:')
 disp('Znaleziona wartość własna:')
 disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
+% disp('Znaleziony wektor własny:')
+% disp(v')
 
 % Sprawdzenie równania własnego
 lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
@@ -156,13 +159,13 @@ disp('Norma residuum ||Av - λv||:')
 disp(residual_norm)
 
 
-disp('Condition value: ||Av - λv|| / ||λv||:')
+disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-5
+if condition <= 1e-11
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
@@ -184,7 +187,7 @@ disp('Wyniki odwrotnej metody potęgowej:')
 disp('Znaleziona wartość własna:')
 disp(lambda)
 disp('Znaleziony wektor własny:')
-disp(v')
+% disp(v')
 
 % Sprawdzenie równania własnego
 lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
@@ -196,19 +199,16 @@ disp('Norma residuum ||Av - λv||:')
 disp(residual_norm)
 
 
-disp('Condition value: ||Av - λv|| / ||λv||:')
+disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
 
 
 % Weryfikacja dokładności
-if condition <= 1e-5
+if condition <= 1e-11
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
 end
-
-
-
 
 end % function

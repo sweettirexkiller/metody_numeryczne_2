@@ -1,4 +1,4 @@
-function [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
+function [lambda, v, errEst,it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
@@ -27,12 +27,14 @@ n = length(b);
 
 % Inicjalizacja wektora startowego
 x_prev = rand(n, 1);
-x_prev = x_prev / norm(x_prev);
+% x_prev = x_prev / norm(x_prev);
 
 % Inicjalizacja zmiennych pomocniczych
 lambda_prev = inf;
 diff = inf;
 iter = 0;
+x_last = x_prev;
+x_i_k_prev = inf;
 
 % Główna pętla metody potęgowej
 while diff > tol
@@ -43,17 +45,33 @@ while diff > tol
     x_current = trojdiagonalny_gauss(p, q, s, y);
     
     % Obliczenie przybliżenia wartości własnej
-    lambda_current = (x_prev' * x_current) / (x_prev' * x_prev);
-    
-    % Obliczenie różnicy między kolejnymi przybliżeniami
-    diff = abs(lambda_prev - lambda_current);
-    
+
+    % lambda_current = (x_prev' * x_current) / (x_prev' * x_prev);
+    Av = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, x_current);
+    lambda_current = (x_current' * (Av)) / (x_current' * x_current);
+   
+ 
     % Normalizacja wektora
-    x_current = x_current / norm(x_current);
+    x_current = x_current / norm(x_current, 2);
+
+    % Obliczenie różnicy między kolejnymi przybliżeniami
+    % diff = norm(lambda_prev - lambda_current);
+    % diff = norm(x_current - x_prev) / norm(x_current);
+    % diff = abs((lambda_current - lambda_prev)/lambda_current);
+
+    x_i_k_abs = max(abs(x_current));
+    
+
+    current_check_value = (1/max(x_current))*x_i_k_abs*max(x_current);
+    previous_check_value =  (1/max(x_prev))*x_i_k_prev*max(x_prev);
+    diff = norm(current_check_value- previous_check_value);
+   
+ 
     
     % Aktualizacja wartości z poprzedniej iteracji
     x_prev = x_current;
     lambda_prev = lambda_current;
+    x_i_k_prev = x_i_k;
     
     % Zwiększenie licznika iteracji
     iter = iter + 1;
@@ -65,8 +83,12 @@ while diff > tol
 end
 
 % Przypisanie wartości wyjściowych
+% v = x_last;
 v = x_prev;
-lambda = 1/lambda_prev + mu;
+it = iter; 
+lambda = lambda_current;
 errEst = diff;
+
+
 
 end

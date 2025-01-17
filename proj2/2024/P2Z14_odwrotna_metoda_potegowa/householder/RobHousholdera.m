@@ -24,14 +24,7 @@ if x(1) < 0
     x_prime = -x_prime;
 end
 
-
-if(isreal(x))
 u = x - x_prime;
-else
-%jesli zespolone 
-% x+x1|x1|−1||x||2 e1 or x−x1|x1|−1||x||2 e1
-end
-
 
 u = u / norm(u); % normalizacja
 
