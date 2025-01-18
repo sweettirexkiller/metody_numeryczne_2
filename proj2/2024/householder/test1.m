@@ -33,7 +33,7 @@ function test1()
     % Wywołanie funkcji
     [p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
 
-    disp('Wyniki refleksji:');
+    disp('Wyniki refleksji  Hn-1 * ... * H1 * A = R:');
     R = diag(p) + diag(q, 1) + diag(s, 2);
     disp(R);
 
@@ -75,7 +75,7 @@ function test1()
     end
 
     % Wyświetlanie wyników testu
-    disp('Odzyskana macierz:');
+    disp('Odzyskana macierz H0 * ... * Hn-1 * R = A:');
     A = diag(b_new) + diag(c_new, 1) + diag(a_new, -1);
     disp(A);
 
