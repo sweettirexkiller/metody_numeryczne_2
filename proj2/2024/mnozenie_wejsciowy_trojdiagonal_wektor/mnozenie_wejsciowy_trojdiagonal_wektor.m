@@ -36,4 +36,4 @@ end
 b(n) = A(n-1)*x(n-1) + B(n)*x(n);
 
 
-end
+end % function

@@ -26,57 +26,20 @@ fprintf(strcat('W tescie wykorzystywany jest fakt, że wartości własne rozszer
 tol = eps * 100;
 maxIter = 1000;
 
-mu = 0.3;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
+mu_values = [0.3, 50, 12, -5];
 
-% Wykonanie testowanej metody
-[lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a_expanded, b_expanded, c_expanded, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ']);
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+for mu = mu_values
+    disp('Naciśnij dowolny klawisz aby kontynuować...')
+    pause % Czeka na naciśnięcie klawisza
+    disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
 
-mu = 50;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
-
-% Wykonanie testowanej metody
-[lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a_expanded, b_expanded, c_expanded, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ']);
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
-mu = 12;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
-
-% Wykonanie testowanej metody
-[lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a_expanded, b_expanded, c_expanded, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ']);
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
-mu = -5;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
-
-% Wykonanie testowanej metody
-[lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a_expanded, b_expanded, c_expanded, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ']);
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
+    % Wykonanie testowanej metody
+    [lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a_expanded, b_expanded, c_expanded, mu, tol, maxIter);
+    disp(['Znaleziona wartość własna: ']);
+    lambda, it
+    % Sprawdzenie równania własnego
+    condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
+    disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+end
 
 end % function

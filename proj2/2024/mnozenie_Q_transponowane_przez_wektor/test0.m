@@ -37,11 +37,4 @@ function test0()
     fprintf('Wyniki testu:\n');
     fprintf('Norma różnicy norm(x - y_prime): %.15f\n', norma_difference);
 
-    % Podsumowanie testu
-    fprintf('\nPodsumowanie testu:\n');
-    if norma_difference < 1e-10
-        fprintf('Test zakończony sukcesem. Wyniki są zgodne z oczekiwaniami.\n');
-    else
-        fprintf('Test nieudany. Wyniki różnią się od oczekiwanych.\n');
-    end
-end
+end % function test0

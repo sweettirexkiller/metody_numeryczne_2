@@ -29,5 +29,4 @@ function y = mnozenie_trojdiagonal_wektor(p,q,s,x)
     y(n-1) = p(n-1)*x(n-1) + q(n-1)*x(n);
     y(n) = p(n)*x(n);
 
-end
-
+end % function

@@ -16,11 +16,8 @@ function [y] = mnozenieWektorPrzezQ(Householdery,x)
 % WYJŚCIE:
 %    y            - wynik mnozenia wektora przez Q
 
-
-
 % Q = H1*H2*....Hn-1*Hn-2;
 % Q*x = H1*H2.....*Hn-1*x;
-
     y = x;
     n = size(x);
     n = n(1);
@@ -30,7 +27,4 @@ function [y] = mnozenieWektorPrzezQ(Householdery,x)
         y_i = y(i:i+1,1);
         y(i:i+1, 1) = H_i*y_i;
     end
-    
-
-end
-
+end % function

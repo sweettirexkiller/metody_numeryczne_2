@@ -65,5 +65,4 @@ end
 p = b;
 q = c;
 
-end
-
+end % function

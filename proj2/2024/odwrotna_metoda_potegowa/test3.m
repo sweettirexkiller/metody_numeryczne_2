@@ -3,70 +3,42 @@ function test3()
 % Piotr Jankiewicz, 288767
 %
 % Test poprawności działania odwrotnej metody potęgowej.
-% Sprawdza zgodność wyniku z wbudowaną funkcją eig dla macierzy
-% trójdiagonalnej rozmiaru n x n o znanych elementach.
-% Test weryfikuje, czy znaleziona wartość własna i wektor własny
-% spełniają równanie własne z zadaną dokładnością.
+% Sprwadzanie wyników znalezionych wartości własnych dla różnych wartości mu dla macierzy trójdiagonalnej 20000 x 20000.
+% Test weryfikuje, czy znaleziona wartość własna i wektor własny spełniają równanie własne z zadaną dokładnością.
+% Dane testowe zawierają wartości własne zespolone. Ten test sprawdza, czy metoda znajduje również wartości zespolone.
 
-% Inicjalizacja danych testowych 100 x 100.
-% Wgrywanie a,b,c,lambdas i v
-load("wektory_test_1.mat");
-format long
+load('wektory_test_3.mat');
 
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;
 maxIter = 1000;
 
-mu = 1;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)]);
+% Testowanie dla 5 losowych wartości wlasnych
+for i = 1:5
+    % wybierz losową wartość własną
+        fprintf('\n');
+        disp('Naciśnij dowolny klawisz aby kontynuować...')
+        pause % Czeka na naciśnięcie klawisza
+        fprintf('\n');
+  % wybierz losową wartość własną
+    index = randi([1, length(lambdas)]);
+    disp(['poszukiwana: ', num2str(lambdas(index))]);
+    mu = lambdas(index) + rand()*2;
+    % przesuń czesc zespolona
+    mu = mu + rand()*2i;
+    disp(['mu=', num2str(mu)]);
 
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ', num2str(lambda)]);
+    % Wykonanie testowanej metody
+    [lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
+    disp(['znaleziona: ', num2str(lambda)]);
+    disp(['iteracje: ', num2str(it)]);
+    % Sprawdzenie równania własnego
+    condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v) - lambda * v) / norm(lambda * v);
+    disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+    % nastepna linia w celu lepszej czytelnosci
+    fprintf('\n');
+end % for
 
-mu = 9;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)])
-
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ', num2str(lambda)]);
-
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
-mu = -1;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)])
-
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ', num2str(lambda)]);
-
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
-mu = 50;
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-disp(['Poszukwiana wartosc wlasna najblizej mu=', num2str(mu)])
-
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-disp(['Znaleziona wartość własna: ', num2str(lambda)]);
-
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
 end % function

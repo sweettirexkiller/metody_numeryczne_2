@@ -88,5 +88,4 @@ function test1()
     disp('|| c - c_new ||:');
     disp(norm(c - c_new));
 
-end
-
+end % function test1

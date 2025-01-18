@@ -88,5 +88,4 @@ n = length(b); % Rozmiar macierzy
     disp('|| c - c_new ||:');
     disp(norm(c - c_new));
 
-end
-
+end % function test4

@@ -51,4 +51,4 @@ function test0()
         real(test3_result(1)), imag(test3_result(1)), ...
         real(test3_result(2)), imag(test3_result(2)));
 
-end
+end % function test0

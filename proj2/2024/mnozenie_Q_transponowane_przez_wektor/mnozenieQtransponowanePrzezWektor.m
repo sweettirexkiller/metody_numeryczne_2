@@ -16,8 +16,6 @@ function [y] = mnozenieQtransponowanePrzezWektor(Householdery,x)
 % WYJŚCIE:
 %    y            - wynik mnozenia wektora przez Q transponowane
 
-
-
 % Q^t = Hn-1 * Hn-2*.....*H1;
 % Q^t*x = Hn-1*Hn-2.....*H1*x;
 
@@ -31,5 +29,4 @@ function [y] = mnozenieQtransponowanePrzezWektor(Householdery,x)
       y(i:i+1, 1) = H_i*y_i;
     end
 
-end
-
+end % function

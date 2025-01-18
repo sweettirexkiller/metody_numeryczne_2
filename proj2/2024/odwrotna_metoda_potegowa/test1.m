@@ -29,60 +29,28 @@ lambdas = diag(D);
 disp('Wartości referencyjne (eig):')
 disp(lambdas)
 
-mu = 1;
-disp(['mu= ', num2str(mu)])
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-
 % Ogólne parametry dla odwrotnej metody potęgowej dla wszystkich testów
 tol = 100*eps;
 maxIter = 1000;
 
-% TESTOWANIE PIERWSZEJ WARTOSCI
-[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-% Weryfikacja poprawności wyniku
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+mu_values = [1, 9, -1, 12];
+tol = 100 * eps;
+maxIter = 1000;
 
-%TESTOWANIE DRUGIEJ WARTOSCI
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-mu = 9;
-disp(['mu= ', num2str(mu)])
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-% Weryfikacja poprawności wyniku
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+for i = 1:length(mu_values)
+    mu = mu_values(i);
+    disp(['mu= ', num2str(mu)])
+    disp('Naciśnij dowolny klawisz aby kontynuować...')
+    pause % Czeka na naciśnięcie klawisza
 
-%TESTOWANIE TRZECIEJ WARTOSCI
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-mu = -1;
-disp(['mu= ', num2str(mu)])
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-% Weryfikacja poprawności wyniku
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+    % Wykonanie testowanej metody
+    [lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
+    % Weryfikacja poprawności wyniku
+    lambda, it
+    % Sprawdzenie równania własnego
+    condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v) - lambda * v) / norm(lambda * v);
+    disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
+end
 
-%TESTOWANIE CZWARTEJ WARTOSCI
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-mu = 12;
-disp(['mu= ', num2str(mu)])
-% Wykonanie testowanej metody
-[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-% Weryfikacja poprawności wyniku
-lambda, it
-% Sprawdzenie równania własnego
-condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
-disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
 end % function
