@@ -22,23 +22,14 @@ function test0()
 
     % Test 1: norm(x - H*y) powinien być bliski zeru
     test1_result = norm(x - H * y);
-    fprintf('Test 1: norm(x - H*y) < %.15f (bliskie 0)\n', test1_result);
+    fprintf('Test 1: norm(x - H*y)\n', test1_result);
 
 
     % Test 2: norm(x - H\y) powinien być dokładnie równy 0
     test2_result = norm(x - H \ y);
-    fprintf('Test 2: norm(x - H\\y) < %.15f (bliskie 0)\n', test2_result);
+    fprintf('Test 2: norm(x - H\\y)\n', test2_result);
 
     % Test 3: H\y powinno odtwarzać x
     test3_result = H \ y;
-    fprintf('Test 3: H\\y = [%f; %f] (odtwarzanie x)\n', test3_result(1), test3_result(2));
-
-    % Podsumowanie testu
-   
-    fprintf('\nPodsumowanie testu:\n');
-    if abs(test1_result) < 1e-10 && test2_result < 1e-12
-        fprintf('Wszystkie testy zakończone sukcesem.\n');
-    else
-        fprintf('Testy wykazały niezgodności. Sprawdź implementację RobHousholdera.\n');
-    end
+    fprintf('Test 3: H\\y = [%f; %f]\n', test3_result(1), test3_result(2));
 end

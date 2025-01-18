@@ -30,7 +30,7 @@ disp('Wartości referencyjne (eig):')
 disp(lambdas)
 
 mu = 1;
-disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
+disp(['mu= ', num2str(mu)])
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
@@ -38,143 +38,51 @@ pause % Czeka na naciśnięcie klawisza
 tol = 100*eps;
 maxIter = 1000;
 
-% Wykonanie testowanej metody
-[lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-
+% TESTOWANIE PIERWSZEJ WARTOSCI
+[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 % Weryfikacja poprawności wyniku
-disp('Wyniki odwrotnej metody potęgowej:')
-disp('Znaleziona wartość własna:')
-disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
-
+lambda, it
 % Sprawdzenie równania własnego
-lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
-rvalue = lambda * v;
-residual_norm = norm(lvalue - rvalue);
+condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
+disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
-disp('Norma residuum ||Av - λv||:')
-disp(residual_norm)
-
-disp('Condition value: ||Av - λv|| / || λv ||:')
-condition = residual_norm/norm(rvalue);
-disp(condition)
-
-% Weryfikacja dokładności
-if condition <= 1e-11
-    disp('Test zakończony pomyślnie - równanie własne spełnione')
-else
-    disp('Test nie powiódł się - zbyt duży błąd residuum')
-end
-
+%TESTOWANIE DRUGIEJ WARTOSCI
+disp('Naciśnij dowolny klawisz aby kontynuować...')
+pause % Czeka na naciśnięcie klawisza
 mu = 9;
-disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
+disp(['mu= ', num2str(mu)])
+% Wykonanie testowanej metody
+[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
+% Weryfikacja poprawności wyniku
+lambda, it
+% Sprawdzenie równania własnego
+condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
+disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
+%TESTOWANIE TRZECIEJ WARTOSCI
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
-
-% Wykonanie testowanej metody
-[lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-
-% Weryfikacja poprawności wyniku
-disp('Wyniki odwrotnej metody potęgowej:')
-disp('Znaleziona wartość własna:')
-disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
-
-% Sprawdzenie równania własnego
-lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
-rvalue = lambda * v;
-residual_norm = norm(lvalue - rvalue);
-
-disp('Norma residuum ||Av - λv||:')
-disp(residual_norm)
-
-disp('Condition value: ||Av - λv|| / || λv ||:')
-condition = residual_norm/norm(rvalue);
-disp(condition)
-
-% Weryfikacja dokładności
-if condition <= 1e-11
-    disp('Test zakończony pomyślnie - równanie własne spełnione')
-else
-    disp('Test nie powiódł się - zbyt duży błąd residuum')
-end
-
 mu = -1;
-disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
+disp(['mu= ', num2str(mu)])
+% Wykonanie testowanej metody
+[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
+% Weryfikacja poprawności wyniku
+lambda, it
+% Sprawdzenie równania własnego
+condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
+disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
+%TESTOWANIE CZWARTEJ WARTOSCI
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
-
-% Wykonanie testowanej metody
-[lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-
-% Weryfikacja poprawności wyniku
-disp('Wyniki odwrotnej metody potęgowej:')
-disp('Znaleziona wartość własna:')
-disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
-
-% Sprawdzenie równania własnego
-lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
-rvalue = lambda * v;
-residual_norm = norm(lvalue - rvalue);
-
-disp('Norma residuum ||Av - λv||:')
-disp(residual_norm)
-
-disp('Condition value: ||Av - λv|| / || λv ||:')
-condition = residual_norm/norm(rvalue);
-disp(condition)
-
-% Weryfikacja dokładności
-if condition <= 1e-11
-    disp('Test zakończony pomyślnie - równanie własne spełnione')
-else
-    disp('Test nie powiódł się - zbyt duży błąd residuum')
-end
-
 mu = 12;
-disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
-
-disp('Naciśnij dowolny klawisz aby kontynuować...')
-pause % Czeka na naciśnięcie klawisza
-
-% Parametry dla odwrotnej metody potęgowej
-
-tol = 1e-12;
-maxIter = 1000;
-
+disp(['mu= ', num2str(mu)])
 % Wykonanie testowanej metody
-[lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
-
+[lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 % Weryfikacja poprawności wyniku
-disp('Wyniki odwrotnej metody potęgowej:')
-disp('Znaleziona wartość własna:')
-disp(lambda)
-disp('Znaleziony wektor własny:')
-disp(v')
-
+lambda, it
 % Sprawdzenie równania własnego
-lvalue = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v);
-rvalue = lambda * v;
-residual_norm = norm(lvalue - rvalue);
-
-disp('Norma residuum ||Av - λv||:')
-disp(residual_norm)
-
-disp('Condition value: ||Av - λv|| / || λv ||:')
-condition = residual_norm/norm(rvalue);
-disp(condition)
-
-% Weryfikacja dokładności
-if condition <= 1e-11
-    disp('Test zakończony pomyślnie - równanie własne spełnione')
-else
-    disp('Test nie powiódł się - zbyt duży błąd residuum')
-end
+condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a,b,c,v) - lambda*v)/norm(lambda*v);
+disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
 end % function

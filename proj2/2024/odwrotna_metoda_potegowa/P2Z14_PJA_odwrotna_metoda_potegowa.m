@@ -1,4 +1,4 @@
-function [lambda, v, errEst,it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
+function [lambda, v, errEst,it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter)
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %

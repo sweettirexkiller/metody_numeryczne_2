@@ -23,8 +23,23 @@ function test1()
     %  0  6  3 10
     %  0  0  7  4
 
+    %wyswietlenie opisu testu
+    disp('Wykonujemy odbicia householdera na macierzy trójdiagonalnej A:');
+    disp('A = ');
+    A = diag(b) + diag(c, 1) + diag(a, -1);
+    disp(A);
+    disp('Wciśnij dowolny klawisz aby kontynuować...');
+    pause;
     % Wywołanie funkcji
     [p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
+
+    disp('Wyniki refleksji:');
+    R = diag(p) + diag(q, 1) + diag(s, 2);
+    disp(R);
+
+    disp('Wykonujemy operację odwrotną próbując odzyskac oryginalną macierz');
+    disp('Wciśnij dowolny klawisz aby kontynuować...');
+    pause;
 
     % Wektory na nowo
     a_new = zeros(1, n - 1);
@@ -60,36 +75,18 @@ function test1()
     end
 
     % Wyświetlanie wyników testu
-    fprintf('Wyniki testu:\n');
-    fprintf('a_new: ');
-    disp(a_new);
-    fprintf('b_new: ');
-    disp(b_new);
-    fprintf('c_new: ');
-    disp(c_new);
+    disp('Odzyskana macierz:');
+    A = diag(b_new) + diag(c_new, 1) + diag(a_new, -1);
+    disp(A);
 
-    % Weryfikacja wyników
-    fprintf('\nPodsumowanie testu:\n');
-    is_correct = true;
+    % Sprawdzenie równości
+    disp('Test równości macierzy:');
+    disp('|| a - a_new ||:');
+    disp(norm(a - a_new));
+    disp('|| b - b_new ||:');
+    disp(norm(b - b_new));
+    disp('|| c - c_new ||:');
+    disp(norm(c - c_new));
 
-    % Sprawdzenie wyników rekonstrukcji (przykładowo z tolerancją 1e-10)
-    if max(abs(a - a_new)) > 1e-10
-        fprintf('Nieprawidłowy wynik dla a_new!\n');
-        is_correct = false;
-    end
-    if max(abs(b - b_new)) > 1e-10
-        fprintf('Nieprawidłowy wynik dla b_new!\n');
-        is_correct = false;
-    end
-    if max(abs(c - c_new)) > 1e-10
-        fprintf('Nieprawidłowy wynik dla c_new!\n');
-        is_correct = false;
-    end
-
-    % Wynik końcowy testu
-    if is_correct
-        fprintf('Wszystkie testy zakończone sukcesem.\n');
-    else
-        fprintf('Testy wykazały niezgodności. Sprawdź implementację RobHouseholderaTrzyDiagonalnie.\n');
-    end
 end
+

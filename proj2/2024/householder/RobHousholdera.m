@@ -10,8 +10,7 @@ function [y1, H] = RobHouseholdera(x1,x2)
 %
 % WYJŚCIE:
 %    y1  - pierwsza wspolrzaedna wektora wyjsciowego (refkleksji x)
-%    h1  - pierwsza kolumna reflektora
-%    h2  - droga kolumna reflektora
+%    H   - macierz Householdera
 
 x = [x1; x2;];
 x_norm = norm(x);
