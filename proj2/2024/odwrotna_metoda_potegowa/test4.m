@@ -6,9 +6,6 @@ function test4()
 % przeprowadzany dla macierzy 20000x20000 ze znanymi wartosciami własnymi.
 %
 
-
-
-
 % Inicjalizacja danych testowych 100 x 100.
 % Wgrywanie a,b,c,lambdas i v
 load("wektory_test_2.mat");
@@ -23,7 +20,7 @@ c_expantion_size = 20000 - size(c,2) - 1;
 c_expanded = [c, zeros(1, c_expantion_size)];
 
 fprintf(strcat('W tescie wykorzystywany jest fakt, że wartości własne rozszerzonej', ...
-        '\n macierzy sa takie same jak oryginalnej. \n'))
+    '\n macierzy sa takie same jak oryginalnej. \n'))
 
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;
@@ -42,8 +39,6 @@ lambda, it
 condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
 disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
-
-
 mu = 50;
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
@@ -57,7 +52,6 @@ lambda, it
 condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
 disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
 
-
 mu = 12;
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
@@ -70,8 +64,6 @@ lambda, it
 % Sprawdzenie równania własnego
 condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a_expanded,b_expanded,c_expanded,v) - lambda*v)/norm(lambda*v);
 disp(['Test ||Av - λv|| / || λv ||: ', num2str(condition)]);
-
-
 
 mu = -5;
 disp('Naciśnij dowolny klawisz aby kontynuować...')
