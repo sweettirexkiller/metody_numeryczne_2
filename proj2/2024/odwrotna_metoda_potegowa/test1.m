@@ -28,24 +28,15 @@ lambdas = diag(D);
 % Wyświetlenie wartości referencyjnych
 disp('Wartości referencyjne (eig):')
 disp(lambdas)
-disp('Odpowiadające wektory własne:')
-disp(V')
-
 
 mu = 1;
 disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
-
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
-
-
-% Parametry dla odwrotnej metody potęgowej
-
-tol = 1e-10;
-maxIter = 10000;
-
-
+% Ogólne parametry dla odwrotnej metody potęgowej dla wszystkich testów
+tol = 100*eps;
+maxIter = 1000;
 
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
@@ -68,7 +59,6 @@ disp(residual_norm)
 disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
-
 
 % Weryfikacja dokładności
 if condition <= 1e-11
@@ -77,13 +67,11 @@ else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
 end
 
-
 mu = 9;
 disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
 
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
-
 
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
@@ -106,7 +94,6 @@ disp(residual_norm)
 disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
-
 
 % Weryfikacja dokładności
 if condition <= 1e-11
@@ -121,8 +108,6 @@ disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
-
-
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 
@@ -144,7 +129,6 @@ disp(residual_norm)
 disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
-
 
 % Weryfikacja dokładności
 if condition <= 1e-11
@@ -159,14 +143,10 @@ disp(['Poszukwiana wartosc wlasna najblizej mu= ', num2str(mu)])
 disp('Naciśnij dowolny klawisz aby kontynuować...')
 pause % Czeka na naciśnięcie klawisza
 
-
-
 % Parametry dla odwrotnej metody potęgowej
 
 tol = 1e-12;
 maxIter = 1000;
-
-
 
 % Wykonanie testowanej metody
 [lambda, v, errEst] = odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
@@ -190,14 +170,11 @@ disp('Condition value: ||Av - λv|| / || λv ||:')
 condition = residual_norm/norm(rvalue);
 disp(condition)
 
-
 % Weryfikacja dokładności
 if condition <= 1e-11
     disp('Test zakończony pomyślnie - równanie własne spełnione')
 else
     disp('Test nie powiódł się - zbyt duży błąd residuum')
 end
-
-
 
 end % function

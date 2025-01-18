@@ -18,6 +18,7 @@ function [lambda, v, errEst,it] = odwrotna_metoda_potegowa(a, b, c, mu, tol, max
 %   lambda  - znaleziona wartość własna najbliższa mu (przybliżona)
 %   v       - odpowiadający znalezionej wartości własnej wektor własny
 %   errEst  - oszacowanie błędu względnego przybliżenia wartości własnej
+%   it      - liczba interacji, ktrórą wykonał program
 
 % Wyznaczenie rozmiaru macierzy
 n = length(b);
@@ -45,13 +46,9 @@ while diff > tol
     x_current = x_current / norm(x_current, 2);
 
     % Obliczenie różnicy między kolejnymi przybliżeniami
-    [~, i_max_current] = max(abs(x_current));
-    [~, i_max_prev] = max(abs(x_prev));
-    current_check_value = (1 / x_current(i_max_current)) * abs(x_current(i_max_current)) * x_current;
-    previous_check_value = (1 / x_prev(i_max_prev)) * abs(x_prev(i_max_prev)) * x_prev;
-    
+  
     % Norma różnicy znormalizowanych wektorów
-    diff = norm(current_check_value - previous_check_value, inf);
+    diff = oblicz_warunek_stopu(x_current, x_prev);
 
     % Aktualizacja wartości z poprzedniej iteracji
     x_prev = x_current;
@@ -73,4 +70,4 @@ errEst = diff;
 
 
 
-end
+end % function
