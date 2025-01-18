@@ -13,6 +13,15 @@ function [y1, H] = RobHouseholdera(x1,x2)
 %    H   - macierz Householdera
 
 x = [x1; x2;];
+
+% Sprawdzenie, czy druga wartość jest już zerowa
+if abs(x2) < 1e-10
+    % Jeśli x2 jest zerowe, H to macierz jednostkowa
+    H = eye(2);
+    y1 = x1; % Pierwsza współrzędna pozostaje bez zmian
+    return;
+end
+
 x_norm = norm(x);
 x_prime = x_norm * eye(2, 1);
 

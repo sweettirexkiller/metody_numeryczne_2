@@ -34,7 +34,7 @@ function test0()
     disp(H);
     disp('Wciśnij dowolny klawisz aby kontynuować...');
     pause;
-    
+
 
     y = H * x;
     % Test 1: norm(x - H*y) powinien być bliski zeru
