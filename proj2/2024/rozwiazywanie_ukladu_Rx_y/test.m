@@ -20,39 +20,39 @@ function test()
 % WYJŚCIE:
 % - Komunikat o wyniku testu
 
-    % Definicja danych wejściowych
-    p = [4, 2, 1, 2, 3];  % Główna przekątna
-    q = [1, 2, 3, 4];     % Pierwsza przekątna nad główną
-    s = [2, 3, 4];        % Druga przekątna nad główną
-    y = [1, 1, 1, 1, 1]; % Wektor prawych stron
+% Definicja danych wejściowych
+p = [4, 2, 1, 2, 3];  % Główna przekątna
+q = [1, 2, 3, 4];     % Pierwsza przekątna nad główną
+s = [2, 3, 4];        % Druga przekątna nad główną
+y = [1, 1, 1, 1, 1]; % Wektor prawych stron
 
-    disp('Test funkcji trojdiagonalny_gauss i mnozenie_trojdiagonal_wektor');
-    disp('dla układu równań R * x = y z macierzą trójdiagonalną R (5x5).');
-    disp(' ');
+disp('Test funkcji trojdiagonalny_gauss i mnozenie_trojdiagonal_wektor');
+disp('dla układu równań R * x = y z macierzą trójdiagonalną R (5x5).');
+disp(' ');
 
-    % Konstrukcja macierzy R z zadanych wektorów
-    R = diag(p) + diag(q, 1) + diag(s, 2);
-    disp('Macierz trójdiagonalna R:');
-    disp(R);
-    disp('Wektor prawych stron y:');
-    disp(y);
-    disp('Naciśnij dowolny klawisz, aby kontynuować...');
-    pause;
+% Konstrukcja macierzy R z zadanych wektorów
+R = diag(p) + diag(q, 1) + diag(s, 2);
+disp('Macierz trójdiagonalna R:');
+disp(R);
+disp('Wektor prawych stron y:');
+disp(y);
+disp('Naciśnij dowolny klawisz, aby kontynuować...');
+pause;
 
-    % Rozwiązanie układu R * x = y
-    disp('Rozwiązywanie układu R * x = y za pomocą trojdiagonalny_gauss...');
-    x = trojdiagonalny_gauss(p, q, s, y);
-    disp('Otrzymany wektor x:');
-    disp(x');
+% Rozwiązanie układu R * x = y
+disp('Rozwiązywanie układu R * x = y za pomocą trojdiagonalny_gauss...');
+x = trojdiagonalny_gauss(p, q, s, y);
+disp('Otrzymany wektor x:');
+disp(x');
 
-    % Weryfikacja przez mnożenie R * x
-    disp('Weryfikacja wyniku przez mnożenie R * x za pomocą mnozenie_trojdiagonal_wektor...');
-    y_test = mnozenie_trojdiagonal_wektor(p, q, s, x);
+% Weryfikacja przez mnożenie R * x
+disp('Weryfikacja wyniku przez mnożenie R * x za pomocą mnozenie_trojdiagonal_wektor...');
+y_test = mnozenie_trojdiagonal_wektor(p, q, s, x);
 
-    % Obliczenie normy różnicy między y a y_test
-    norma_diff = norm(y - y_test);
-    disp('|| y - y_test || = ');
-    disp(norma_diff);
-    disp(' ');
+% Obliczenie normy różnicy między y a y_test
+norma_diff = norm(y - y_test);
+disp('|| y - y_test || = ');
+disp(norma_diff);
+disp(' ');
 
 end  % function
