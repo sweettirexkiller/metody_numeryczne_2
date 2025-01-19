@@ -51,4 +51,4 @@ for i = 1:length(test_cases)
 end
 
 disp('Koniec testu dokładności.')
-end
+end % function numtest3

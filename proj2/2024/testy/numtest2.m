@@ -1,34 +1,24 @@
-function numtest1()
+function numtest2()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
 % Test numerycznych własności odwrotnej metody potęgowej
-% Weryfikacja konwergencji metody dla różnych parametrów
+% Weryfikacja wrażliwości metody na parametr przesunięcia
 
 % Parametry domyślne
 tol_default = eps * 100;
 maxIter_default = 1000;
 
-disp('Test 1: Konwergencja odwrotnej metody potęgowej')
-disp('-----------------------------------------------')
+disp('Test 2: Wrażliwość na parametr przesunięcia')
+disp('-------------------------------------------')
 
-% Macierz testowa - prosta macierz trójdiagonalna
+% Macierz testowa
 a = [1 1 1 1];
 b = [10 10 10 10 10];
 c = [1 1 1 1];
 
-% Obliczanie wartości i wektorów własnych
-A = diag(b) + diag(c, 1) + diag(a, -1);
-[V, D] = eig(A);
-% wartosci wlasne
-disp('Wektory własne (kolumny macierzy V):');
-disp(V); % Wektory własne (kolumny macierzy V)
-% Wszystkie wartości własne
-disp('Wartości własne:');
-disp(diag(D));
-
-% Różne parametry przesunięcia
-mu_values = [8, 10.0000001, 12];
+% Bardzo bliskie sobie wartości parametru μ
+mu_values = [9.99, 10 + 10*eps, 10.01];
 
 for i = 1:length(mu_values)
     fprintf('\nTest dla μ = %f:\n', mu_values(i));
@@ -45,5 +35,5 @@ for i = 1:length(mu_values)
     fprintf('Liczba iteracji: %d\n', it);
 end
 
-disp('Koniec testu konwergencji.')
-end
+disp('Koniec testu wrażliwości.')
+end % function numtest2
