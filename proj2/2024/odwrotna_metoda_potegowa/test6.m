@@ -1,21 +1,43 @@
-function test3()
+function test6()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Test poprawności działania odwrotnej metody potęgowej.
-% Sprawdzanie wyniku znalezionych wartości własnych
-% dla różnych wartości μ dla macierzy trójdiagonalnej 20000 x 20000.
-% Test wyświetla wyniki obliczeń bez ich interpretacji.
-% Dane testowe zawierają wartości własne zespolone.
+% Test własności wartości własnych dla macierzy trójdiagonalnej
+% o specjalnej strukturze: stała wartość głównej diagonali = 10
+% i stała wartość subdiagonali = 3. Macierz rozmiaru 50 000 x 50 000.
 
-% Wczytanie danych testowych dla macierzy 20000 x 20000
-load('wektory_test_3.mat', 'a', 'b', 'c', 'lambdas');
+load('wektory_test_6.mat', 'lambdas');
+% Rozmiar macierzy
+n = 10000;
+
+% Ustalone wartości dla tego testu
+x = 1;  % Wartość na głównej diagonali
+y = 5000;   % Wartość na subdiagonalach
+
+fprintf('Test macierzy trójdiagonalnej:\n');
+fprintf('Rozmiar: %d x %d\n', n, n);
+fprintf('Diagonala główna: %f\n', x);
+fprintf('Subdiagonale: %f\n', y);
+
+% Oczekiwany zakres wartości własnych
+mu_min = x - 2*y;  % 10 - 2*3 = 4
+mu_max = x + 2*y;  % 10 + 2*3 = 16
+
+fprintf('Oczekiwany zakres wartości własnych: %f do %f\n', mu_min, mu_max);
+
+% Tworzenie macierzy trójdiagonalnej
+b = x * ones(1, n);
+a = y * ones(1, n-1);
+c = y * ones(1, n-1);
+
 
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;
 maxIter = 1000;
 
-% Seria testów dla 5 losowych wartości własnych
+% Losowy wybór parametru μ w oczekiwanym zakresie
+
+
 for i = 1:5
     fprintf('\nTest %d:\n', i);
     disp('Naciśnij dowolny klawisz, aby kontynuować...')
@@ -28,6 +50,7 @@ for i = 1:5
     fprintf('Znana wartość własna: %s\n', num2str(lambdas(index)));
 
     % Ustalenie parametru μ z możliwością uwzględnienia części zespolonej
+
     mu = lambdas(index) + 0.2*rand();
     if imag(lambdas(index)) ~= 0
         mu = mu + rand()*0.5i;
@@ -45,6 +68,7 @@ for i = 1:5
     condition = norm(mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, v) - lambda * v) / norm(lambda * v);
     fprintf('Wartość warunku ||Av - λv|| / ||λv||: %e\n', condition);
 end
+
 
 disp('Koniec testu.')
 end % function

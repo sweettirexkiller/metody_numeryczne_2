@@ -6,7 +6,7 @@ function test2()
 % dla macierzy trójdiagonalnej rozmiaru 100 x 100.
 
 % Inicjalizacja danych testowych
-load("wektory_test_2.mat");
+load("wektory_test_2.mat",'a', 'b','c', 'lambdas');
 format long
 
 % Parametry dla odwrotnej metody potęgowej
@@ -29,7 +29,7 @@ for i = 1:5
     fprintf('Znana wartość własna: %f\n', lambdas(index));
 
     % Parametr przesunięcia mu
-    mu = lambdas(index) + 0.5*rand();
+    mu = lambdas(index) + 0.1*rand();
     fprintf('Parametr μ: %f\n', mu);
 
     % Wywołanie testowanej metody

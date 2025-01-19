@@ -22,7 +22,6 @@ function test1()
 % - Referencyjne wartości własne macierzy A wyznaczone funkcją eig.
 
 % Inicjalizacja danych testowych
-n = 4;
 a = [1, 2, 3];        % Poddiagonala
 b = [4, 5, 6, 7];     % Diagonala główna
 c = [8, 9, 10];       % Naddiagonala
@@ -51,7 +50,7 @@ for i = 1:length(mu_values)
     pause;
 
     % Wykonanie testowanej metody
-    [lambda, v, errEst, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
+    [lambda, v, ~, it] = P2Z14_PJA_odwrotna_metoda_potegowa(a, b, c, mu, tol, maxIter);
 
     % Wyświetlenie wyników
     disp('Wartość własna lambda:');
