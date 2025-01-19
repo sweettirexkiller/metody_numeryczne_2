@@ -33,4 +33,4 @@ fprintf('2. ||H - H^T|| = %.2e\n', norm(H - H'))
 fprintf('3. ||H^T*H - I|| = %.2e\n', norm(H'*H - eye(2)))
 fprintf('4. ||H^2 - I|| = %.2e\n', norm(H*H - eye(2)))
 
-end % function test0
+end % function

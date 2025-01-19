@@ -9,13 +9,11 @@ function test2()
 load("wektory_test_2.mat",'a', 'b','c', 'lambdas');
 format long
 
+disp('Test funkcji odwrotnej metody potęgowej dla macierzy trójdiagonalnej 100x100')
+
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;
 maxIter = 1000;
-
-% Rozpoczęcie serii testów
-disp('Test metody odwrotnej potęgowej')
-disp('--------------------------------')
 
 for i = 1:5
     fprintf('\nTest %d:\n', i);

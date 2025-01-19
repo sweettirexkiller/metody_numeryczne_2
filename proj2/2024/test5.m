@@ -19,7 +19,7 @@ c_expantion_size = 20000 - size(c,2) - 1;
 c_expanded = [c, zeros(1, c_expantion_size)];
 
 % Informacja o teście
-disp('Test rozszerzenia macierzy trójdiagonalnej o znanych wartościach własnych');
+disp('Test odwrotnej metody potegowej dla rozszerzenia macierzy trójdiagonalnej o znanych wartościach własnych');
 disp("Wielkość macierzy 20 000 x 20 000");
 
 % Parametry dla odwrotnej metody potęgowej

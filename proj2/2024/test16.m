@@ -6,7 +6,7 @@ function test16()
 % Test sprawdza dokładność numeryczną rekonstrukcji, weryfikując czy błędy
 % w odtworzonych wektorach są rzędu błędu maszynowego.
 
-disp('Test: Weryfikacja dokładności numerycznej')
+disp('Test: Weryfikacja dokładności numerycznej Refleksji Householdera dla macierzy trójdiagonalnej')
 disp('Sprawdzamy różnice między oryginalnymi i zrekonstruowanymi wektorami')
 disp('Naciśnij dowolny klawisz...')
 pause
@@ -39,4 +39,4 @@ fprintf('Błąd elementów pod przekątną:     %.2e\n', norm(a - a_new))
 fprintf('Błąd elementów głównej przekątnej: %.2e\n', norm(b - b_new))
 fprintf('Błąd elementów nad przekątną:      %.2e\n', norm(c - c_new))
 
-end % function test3
+end % function

@@ -21,6 +21,8 @@ function test1()
 % - Wartość ||Av - λv|| / ||λv|| obrazująca spełnienie równania własnego.
 % - Referencyjne wartości własne macierzy A wyznaczone funkcją eig.
 
+disp('Test funkcji odwrotnej metody potęgowej dla macierzy trójdiagonalnej 4x4');
+
 % Inicjalizacja danych testowych
 a = [1, 2, 3];        % Poddiagonala
 b = [4, 5, 6, 7];     % Diagonala główna

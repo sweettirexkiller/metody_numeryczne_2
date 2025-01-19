@@ -15,7 +15,7 @@ n = 10000;
 x = 1;  % Wartość na głównej diagonali
 y = 5000;   % Wartość na subdiagonalach
 
-fprintf('Test macierzy trójdiagonalnej:\n');
+fprintf('Test odwrotnej metodypotęgowej dla macierzy trójdiagonalnej:\n');
 fprintf('Rozmiar: %d x %d\n', n, n);
 fprintf('Diagonala główna: %f\n', x);
 fprintf('Subdiagonale: %f\n', y);

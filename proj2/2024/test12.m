@@ -10,7 +10,7 @@ function test12()
 % Jeśli implementacja jest poprawna, różnica między wektorem
 % początkowym x a końcowym Q*Q^T*x powinna być bliska zeru.
 
-disp('Test: Weryfikacja własności Q*Q^T = I')
+disp('Test: Weryfikacja własności Q*Q^T = I uzyskanej z algorytmu Householdera')
 disp('Testujemy dla macierzy trójdiagonalnej:')
 disp('Dane wejściowe:')
 disp('a = [5, 6, 7]       (pod główną)')
@@ -44,4 +44,4 @@ fprintf('2. Q * y = Q * (Q^T * x):\n')
 disp(y_prime)
 fprintf('3. Błąd: ||x - Q*(Q^T*x)|| = %.2e\n', norm(x - y_prime))
 
-end % function test0
+end % function

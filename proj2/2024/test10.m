@@ -43,4 +43,4 @@ disp(y)
 y_expected = [3; 12; 22; 10];
 fprintf('Błąd wyniku: %.2e\n', norm(y - y_expected))
 
-end % function test
+end % function

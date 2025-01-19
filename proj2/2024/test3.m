@@ -11,6 +11,8 @@ function test3()
 % Wczytanie danych testowych dla macierzy 20000 x 20000
 load('wektory_test_3.mat', 'a', 'b', 'c', 'lambdas');
 
+disp('Test funkcji odwrotnej metody potęgowej dla macierzy trójdiagonalnej 20000x20000')
+
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;
 maxIter = 1000;
@@ -28,7 +30,7 @@ for i = 1:5
     fprintf('Znana wartość własna: %s\n', num2str(lambdas(index)));
 
     % Ustalenie parametru μ z możliwością uwzględnienia części zespolonej
-    mu = lambdas(index) + 0.2*rand();
+    mu = lambdas(index) + 0.1*rand();
     if imag(lambdas(index)) ~= 0
         mu = mu + rand()*0.5i;
     end

@@ -66,4 +66,4 @@ disp(x_prime');
 err = norm(x_prime - x);
 fprintf('Błąd rozwiązania: ||x_prime - x|| = %.2e\n', err);
 
-end
+end % function

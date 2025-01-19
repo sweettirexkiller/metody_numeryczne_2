@@ -7,7 +7,7 @@ function test15()
 % Jest to ważny przypadek szczególny, który weryfikuje zachowanie
 % własności macierzy jednostkowej podczas transformacji.
 
-disp('Test: Weryfikacja dla macierzy jednostkowej')
+disp('Test: Weryfikacja  poprawności Refleksji Householdera dla macierzy jednostkowej')
 disp('Macierz testowa:')
 disp('   [1  0  0  0]')
 disp('   [0  1  0  0]')
@@ -56,4 +56,4 @@ fprintf('Pod-diagonala:     %.2e\n', norm(a - a_new))
 fprintf('Główna diagonala:  %.2e\n', norm(b - b_new))
 fprintf('Nad-diagonala:     %.2e\n', norm(c - c_new))
 
-end % function test4
+end % function

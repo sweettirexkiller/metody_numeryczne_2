@@ -9,6 +9,8 @@ function test4()
 % Inicjalizacja danych testowych
 load("wektory_test_2.mat", "a", "b", "c");
 
+disp('Test rozszerzenia macierzy trójdiagonalnej o znanych wartościach własnych o macierz jednostkową.');
+
 % Rozszerzenie macierzy do rozmiaru 20 000 x 20 000
 a_expantion_size = 20000 - size(a,2) - 1;
 a_expanded = [a, zeros(1, a_expantion_size)];
@@ -16,9 +18,6 @@ b_expantion_size = 20000 - size(b,2);
 b_expanded = [b, ones(1, b_expantion_size)];
 c_expantion_size = 20000 - size(c,2) - 1;
 c_expanded = [c, zeros(1, c_expantion_size)];
-
-% Informacja o teście
-disp('Test rozszerzenia macierzy trójdiagonalnej o znanych wartościach własnych');
 
 % Parametry dla odwrotnej metody potęgowej
 tol = eps * 100;

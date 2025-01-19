@@ -37,4 +37,4 @@ disp('Zrekonstruowana macierz A:')
 A_reconstructed = diag(b_new) + diag(c_new, 1) + diag(a_new, -1);
 disp(A_reconstructed)
 
-end % function test2
+end % function
