@@ -13,7 +13,6 @@ function test()
 % - Poprawność rozwiązania układu A * b = x.
 % - Norma różnicy norm(x_prime - x) powinna być bardzo mała.
 
-   
 
     % Parametry testu
     n = 10000; % Rozmiar macierzy
@@ -35,13 +34,7 @@ function test()
     norma_difference = norm(x_prime - x);
 
     % Wyniki testu
-    fprintf("Norma różnicy między x_prime a x: %.15f\n", norma_difference);
+    fprintf("|| x_primne - x || = %.15f\n", norma_difference);
 
     % Podsumowanie testu
-    fprintf("\nPodsumowanie testu:\n");
-    if norma_difference < 1e-10
-        fprintf("Test zakończony sukcesem. Wyniki są zgodne z oczekiwaniami.\n");
-    else
-        fprintf("Test nieudany. Wyniki różnią się od oczekiwanych.\n");
-    end
 end

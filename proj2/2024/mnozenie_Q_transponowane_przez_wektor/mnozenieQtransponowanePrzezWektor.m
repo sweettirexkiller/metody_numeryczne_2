@@ -1,32 +1,39 @@
-function [y] = mnozenieQtransponowanePrzezWektor(Householdery,x)
-% Projekt 2, zadanie XXXX
+function [y] = mnozenieQtransponowanePrzezWektor(Householdery, x)
+% Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
-% 
-% Funkcja mnozenieQtransponowanePrzezWektor
-% 
-% wektor_wynikowy = Q^t*x;
 %
-% WEJŚĆIE:
-%    Householdery - macierz [2x2xn-1] wszystkich macierzy housholdera do
-%                   zerowania kolejnych kolumn
-%    x            - wektor x wejsciowy 
-%   
-% 
+% Funkcja realizuje mnożenie wektora x przez macierz transponowaną Q^T.
+% Macierz Q^T jest iloczynem macierzy Householdera w odwrotnej kolejności
+% niż w przypadku macierzy Q. Ze względu na własności macierzy Householdera
+% (H^T = H), mnożenie przez transpozycję sprowadza się do mnożenia przez
+% te same macierze w przeciwnej kolejności.
+%
+% WEJŚCIE:
+%    Householdery - tensor [2x2x(n-1)] zawierający macierze Householdera
+%                   używane do transformacji macierzy trójdiagonalnej
+%    x            - wektor wejściowy do przemnożenia
 %
 % WYJŚCIE:
-%    y            - wynik mnozenia wektora przez Q transponowane
+%    y            - wektor wynikowy będący iloczynem Q^T * x
 
-% Q^t = Hn-1 * Hn-2*.....*H1;
-% Q^t*x = Hn-1*Hn-2.....*H1*x;
+% Inicjalizacja wektora wynikowego
+y = x;
 
-    y = x;
-    n = size(x);
-    n = n(1);
+% Określenie rozmiaru problemu
+n = size(x);
+n = n(1);
 
-    for i = (1: +1:n-1)
-      H_i = Householdery(:,:,i);
-      y_i = y(i:i+1,1);
-      y(i:i+1, 1) = H_i*y_i;
-    end
+% Mnożenie kolejno przez macierze Householdera w naturalnej kolejności
+% Q^T * x = H(n-1) * H(n-2) * ... * H1 * x
+for i = 1:n-1
+    % Pobranie i-tej macierzy Householdera
+    H_i = Householdery(:, :, i);
+
+    % Wydzielenie odpowiedniego fragmentu wektora do transformacji
+    y_i = y(i:i+1, 1);
+
+    % Wykonanie transformacji Householdera na fragmencie wektora
+    y(i:i+1, 1) = H_i * y_i;
+end
 
 end % function

@@ -1,39 +1,44 @@
 function b = mnozenie_wejsciowy_trojdiagonal_wektor(A, B, C, x)
-% Projekt 2, zadanie XXXX
+% Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Funkcja mnozenie_wejsciowy_trojdiagonal_wektor
+% Funkcja realizuje mnożenie wektora x przez macierz trójdiagonalną.
+% Macierz ma następującą strukturę:
+%   [B1 C1  0  0  0]
+%   [A1 B2 C2  0  0]
+%   [0  A2 B3 C3  0]
+%   [0   0 A3 B4 C4]
+%   [0   0  0 A4 B5]
 %
-% Funckja mnozaca Macierz trodiagonalna przez wektor x.
+% WEJŚCIE:
+%    B  - wektor wartości z głównej diagonali macierzy
+%    C  - wektor wartości z jeden rząd wyżej od głównej diagonali
+%    A  - wektor wartości z jeden rząd niżej od głównej diagonali
+%    x  - wektor wejściowy do przemnożenia
 %
-% WEJŚĆIE:
-%    B      - wektor wartosci z glownej diagonali macierzy
-%    C      - wektor wartosci z jeden rzad wyzej od glownej diagonali
-%    A      - wektor wartosci z jeden rzad nizej od glownej diagonali
-%   
 % WYJŚCIE:
-%    b      - wektor rozwiaania  = A*x;
+%    b  - wektor rozwiązania b = A*x, lub wektor NaN gdy wymiary
+%         wektorów są nieprawidłowe
 
+% Sprawdzenie wymiarów wektorów wejściowych
 n = length(B);
-if length(C) ~= n-1
-    error('Input C must have length n-1');
+if length(C) ~= n-1 || length(A) ~= n-1 || length(x) ~= n
+    b = NaN(n, 1);
+    return;
 end
 
-if length(A) ~= n-1
-    error('Input A must have length n-1');
-end
-
-if length(x) ~= n
-    error('Input x must have length n');
-end
-
+% Inicjalizacja wektora wynikowego
 b = zeros(n, 1);
+
+% Obliczenie dla pierwszego wiersza
 b(1) = B(1)*x(1) + C(1)*x(2);
 
+% Obliczenie dla wierszy środkowych
 for i = 2:n-1
     b(i) = A(i-1)*x(i-1) + B(i)*x(i) + C(i)*x(i+1);
 end
-b(n) = A(n-1)*x(n-1) + B(n)*x(n);
 
+% Obliczenie dla ostatniego wiersza
+b(n) = A(n-1)*x(n-1) + B(n)*x(n);
 
 end % function

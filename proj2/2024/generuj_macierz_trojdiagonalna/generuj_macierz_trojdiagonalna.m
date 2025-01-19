@@ -1,26 +1,25 @@
-function [a,b,c] = generuj_macierz_trojdiagonalna(n)
+function [a, b, c] = generuj_macierz_trojdiagonalna(n)
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Funkcja generuj_macierz_trojdiagonalna generuje losową macierz trójdiagonalną o rozmiarze n x n z wartosci
-% losowymi z przedziału -100 do 100.
+% Funkcja generuje losową macierz trójdiagonalną o rozmiarze n x n.
+% Wszystkie elementy niezerowe są losowane z przedziału [-100, 100].
 %
-% WEJŚĆIE:
-%   n - rozmiar macierzy
+% WEJŚCIE:
+%   n - rozmiar macierzy (liczba naturalna dodatnia)
+%
 % WYJŚCIE:
-%   a - pod-przekątna, wektor wartosci znajdujących się pod diagonalą macierzy A
-%   b - przekątna, wektor wartosci znajdujących się na diagonali macierzy A
-%   c - nad-przekątna , wektor wartosci znajdującyhc się nad diagonalą macierzy A
+%   a - wektor elementów znajdujących się pod główną przekątną
+%   b - wektor elementów znajdujących się na głównej przekątnej
+%   c - wektor elementów znajdujących się nad główną przekątną
 
-
-% Podprzekątna z losowymi wartościami
+% Generowanie elementów pod główną przekątną (n-1 elementów)
 a = -100 + 200 * rand(1, n-1);
 
-% Główna przekątna z losowymi wartościami
+% Generowanie elementów głównej przekątnej (n elementów)
 b = -100 + 200 * rand(1, n);
 
-% Nadprzekątna z losowymi wartościami
+% Generowanie elementów nad główną przekątną (n-1 elementów)
 c = -100 + 200 * rand(1, n-1);
-
 
 end % function

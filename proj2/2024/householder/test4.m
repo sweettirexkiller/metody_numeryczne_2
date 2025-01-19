@@ -3,89 +3,57 @@ function test4()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Testuje działanie funkcji RobHouseholderaTrzyDiagonalnie dla macierzy trójdiagonalnej jednostkowej.
-% Wyświetla wyniki i weryfikuje zgodność z oczekiwaniami.
-%
-% Testowane właściwości:
-% 1. Hn-1 * ... * H1 * A = R, gdzie R to macierz trójdiagonalna.
-% 2. H0 * ... * Hn-1 * R = A, czyli rekonstruuje oryginalną macierz.
+% Test sprawdza działanie funkcji dla macierzy jednostkowej 4x4.
+% Jest to ważny przypadek szczególny, który weryfikuje zachowanie
+% własności macierzy jednostkowej podczas transformacji.
 
-% Dane wejściowe
-a = [0, 0, 0];
-b = [1, 1, 1, 1];
-c = [0, 0, 0];
+disp('Test 4: Weryfikacja dla macierzy jednostkowej')
+disp('Macierz testowa:')
+disp('   [1  0  0  0]')
+disp('   [0  1  0  0]')
+disp('   [0  0  1  0]')
+disp('   [0  0  0  1]')
+disp('Naciśnij dowolny klawisz...')
+pause
 
-n = length(b); % Rozmiar macierzy
+% Przygotowanie danych testowych
+a = [0, 0, 0];        % pod-diagonala (same zera)
+b = [1, 1, 1, 1];     % główna diagonala (same jedynki)
+c = [0, 0, 0];        % nad-diagonala (same zera)
 
-% Oczekiwana macierz (do ręcznej weryfikacji)
-%  1  0  0  0
-%  0  1  0  0
-%  0  0  1  0
-%  0  0  0  1
+% Wykonanie transformacji
+[p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
+R = diag(p) + diag(q, 1) + diag(s, 2);
 
-    %wyswietlenie opisu testu
-    disp('Wykonujemy odbicia householdera na macierzy trójdiagonalnej A:');
-    disp('A = ');
-    A = diag(b) + diag(c, 1) + diag(a, -1);
-    disp(A);
-    disp('Wciśnij dowolny klawisz aby kontynuować...');
-    pause;
-    % Wywołanie funkcji
-    [p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
+% Sprawdzenie wyników transformacji
+disp('Macierz R po transformacji:')
+disp(R)
+disp('Naciśnij dowolny klawisz...')
+pause
 
-    disp('Wyniki refleksji  Hn-1 * ... * H1 * A = R:');
-    R = diag(p) + diag(q, 1) + diag(s, 2);
-    disp(R);
+% Rekonstrukcja oryginalnej macierzy
+n = length(b);
+a_new = zeros(1, n-1);
+b_new = zeros(1, n);
+c_new = zeros(1, n-1);
 
-    disp('Wykonujemy operację odwrotną próbując odzyskac oryginalną macierz');
-    disp('Wciśnij dowolny klawisz aby kontynuować...');
-    pause;
-
-    % Wektory na nowo
-    a_new = zeros(1, n - 1);
-    b_new = zeros(1, n);
-    c_new = zeros(1, n - 1);
-    s_new = zeros(1, n - 2);
-
-    % Rozpoczęcie mnożenia przez Q
-    for i = n-1:-1:1
-        if i == n - 1
-            % Przypadek dla i == n-1
-            H = Householdery(:, :, i);
-            R = [p(i), q(i); 0, p(i + 1)];
-            temp = H * R;
-
-            a_new(i) = temp(2, 1);
-            b_new(i) = temp(1, 1);
-            b_new(i + 1) = temp(2, 2);
-            c_new(i) = temp(1, 2);
-        else
-            % Przypadek dla i < n-1
-            H = Householdery(:, :, i);
-            R = [p(i), q(i), s(i); 0, b_new(i + 1), c_new(i + 1)];
-            temp = H * R;
-
-            a_new(i) = temp(2, 1);
-            b_new(i) = temp(1, 1);
-            c_new(i) = temp(1, 2);
-            c_new(i + 1) = temp(2, 3);
-            s_new(i) = temp(1, 3);
-            b_new(i + 1) = temp(2, 2);
-        end
+for i = n-1:-1:1
+    H = Householdery(:, :, i);
+    if i == n-1
+        temp = H * [p(i), q(i); 0, p(i+1)];
+        a_new(i) = temp(2,1); b_new(i) = temp(1,1);
+        b_new(i+1) = temp(2,2); c_new(i) = temp(1,2);
+    else
+        temp = H * [p(i), q(i), s(i); 0, b_new(i+1), c_new(i+1)];
+        a_new(i) = temp(2,1); b_new(i) = temp(1,1);
+        c_new(i) = temp(1,2); b_new(i+1) = temp(2,2);
     end
+end
 
-    % Wyświetlanie wyników testu
-    disp('Odzyskana macierz H0 * ... * Hn-1 * R = A:');
-    A = diag(b_new) + diag(c_new, 1) + diag(a_new, -1);
-    disp(A);
-
-    % Sprawdzenie równości
-    disp('Test równości macierzy:');
-    disp('|| a - a_new ||:');
-    disp(norm(a - a_new));
-    disp('|| b - b_new ||:');
-    disp(norm(b - b_new));
-    disp('|| c - c_new ||:');
-    disp(norm(c - c_new));
+% Weryfikacja wyników
+disp('Błędy rekonstrukcji:')
+fprintf('Pod-diagonala:     %.2e\n', norm(a - a_new))
+fprintf('Główna diagonala:  %.2e\n', norm(b - b_new))
+fprintf('Nad-diagonala:     %.2e\n', norm(c - c_new))
 
 end % function test4

@@ -1,43 +1,48 @@
 function x = trojdiagonalny_gauss(p, q, s, y)
-% Projekt 2, zadanie XXXXX
+% Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Funkcja trojdiagonalny_gauss
+% Funkcja znajduje rozwiązanie układu równań Rx = y metodą eliminacji Gaussa,
+% gdzie R jest macierzą górną trójdiagonalną n×n. Macierz R ma strukturę:
+%   [p1 q1 s1  0  0]
+%   [0  p2 q2 s2  0]
+%   [0   0 p3 q3 s3]
+%   [0   0  0 p4 q4]
+%   [0   0  0  0 p5]
 %
-% Funkcja Znajdująca rozwiązanie równania Rx = y metodą eliminacji Gaussa, 
-% gdzie R jest macierzą trójdiagonalną n na n, której diagonale są w
-% wektorach p,q,s. x jest rozwiązaniem rownania.
+% WEJŚCIE:
+%    p  - wektor wartości z głównej przekątnej macierzy R
+%    q  - wektor wartości z pierwszej przekątnej nad główną
+%    s  - wektor wartości z drugiej przekątnej nad główną
+%    y  - wektor wyrazów wolnych układu równań
 %
-% WEJŚĆIE:
-%    p      - wektor wartosci z diagonali macierzy R
-%    q      - wektor wartosci z jeden rzad wyzej od diagonali 
-%    s      - wektor wartosci z dwa rzedy wyzej od diagonali 
-%   
 % WYJŚCIE:
-%    x      - wektor rozwiaania Ex = y
+%    x  - wektor rozwiązania układu Rx = y, lub wektor NaN gdy wymiary
+%         wektorów są nieprawidłowe
 
-
-    n = length(p);
-    x = y;
-  
-    for i = n:-1:3
-        x(i) = x(i) / p(i);
-        p(i) = 1; % should be 1
-    
-        x(i-1) = x(i-1)  - q(i-1)*x(i);
-        q(i-1) = 0;
-        
-        x(i-2) = x(i-2) - s(i-2)*x(i);
-        s(i-2) = 0;
-    end
-
-    x(2) = x(2) / p(2);
-    p(2) = 1;
-    x(1) = x(1)  - q(1)*x(2);
-    q(1) = 0;
-    x(1) = x(1) / p(1);
-    p(1) = 1; 
-
-
-
+% Sprawdzenie wymiarów wektorów wejściowych
+n = length(p);
+if length(q) ~= n-1 || length(s) ~= n-2 || length(y) ~= n
+    x = NaN(n, 1);
+    return;
 end
+
+% Inicjalizacja wektora rozwiązania
+x = y;
+
+% Rozwiązywanie układu metodą podstawiania wstecz
+% Zaczynamy od ostatniego równania i idziemy w górę
+for i = n:-1:3
+    % Obliczenie i-tej niewiadomej
+    x(i) = x(i) / p(i);
+
+    % Podstawienie wartości do równań wyżej
+    x(i-1) = x(i-1) - q(i-1)*x(i);
+    x(i-2) = x(i-2) - s(i-2)*x(i);
+end
+
+% Osobna obsługa dwóch pierwszych równań
+x(2) = x(2) / p(2);
+x(1) = (x(1) - q(1)*x(2)) / p(1);
+
+end % function
