@@ -6,7 +6,7 @@ function test3()
 % Test sprawdza dokładność numeryczną rekonstrukcji, weryfikując czy błędy
 % w odtworzonych wektorach są rzędu błędu maszynowego.
 
-disp('Test 3: Weryfikacja dokładności numerycznej')
+disp('Test: Weryfikacja dokładności numerycznej')
 disp('Sprawdzamy różnice między oryginalnymi i zrekonstruowanymi wektorami')
 disp('Naciśnij dowolny klawisz...')
 pause

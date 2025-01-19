@@ -8,7 +8,7 @@ function test()
 % wartość, co pozwala dokładnie zweryfikować poprawność mnożenia we
 % wszystkich pozycjach.
 
-disp('Test 8: Mnożenie wektora przez macierz trójdiagonalną')
+disp('Test: Mnożenie wektora przez macierz trójdiagonalną')
 disp('Testujemy macierz o strukturze:')
 disp('   [2  1  0  0]    gdzie:')
 disp('   [3  4  5  0]    B = [2,4,6,8] (główna przekątna)')

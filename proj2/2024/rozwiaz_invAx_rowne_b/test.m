@@ -2,39 +2,68 @@ function test()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
-% Test dla funkcji generuj_macierz_trojdiagonalna i rozwiaz_invAx_rowne_b
+% Test sprawdza współdziałanie funkcji rozwiaz_invAx_rowne_b oraz
+% mnozenie_wejsciowy_trojdiagonal_wektor przy rozwiązywaniu układu równań
+% z zadaną macierzą trójdiagonalną.
 %
-% Testuje funkcje:
-% 1. generuj_macierz_trojdiagonalna - generowanie dużej macierzy trójdiagonalnej.
-% 2. rozwiaz_invAx_rowne_b - rozwiązywanie układu A * b = x.
-% 3. mnozenie_wejsciowy_trojdiagonal_wektor - weryfikacja wyników przez mnożenie.
+% Weryfikacja polega na rozwiązaniu układu inv(A)*x = b dla znanej macierzy A
+% i wektora x, a następnie pomnożeniu wyniku b przez macierz A. Jeśli
+% implementacje są poprawne, w wyniku otrzymamy z powrotem oryginalny wektor x.
 %
-% Testowane właściwości:
-% - Poprawność rozwiązania układu A * b = x.
-% - Norma różnicy norm(x_prime - x) powinna być bardzo mała.
+% Macierz A jest zdefiniowana jako:
+%   [  4   1   0   0   0 ]
+%   [  1   4   1   0   0 ]
+%   [  0   1   4   1   0 ]
+%   [  0   0   1   4   1 ]
+%   [  0   0   0   1   4 ]
+% gdzie:
+%   - wektor a zawiera elementy podprzekątnej   (tu: 1)
+%   - wektor b zawiera elementy głównej przekątnej (tu: 4)
+%   - wektor c zawiera elementy nadprzekątnej   (tu: 1)
+%
+% Wektor x to: [1; 2; 3; 4; 5]
+% Spodziewany wynik x_prime to taki sam wektor jak x.
+%
+% Oczekiwany wynik:
+% - Wizualna zgodność wektorów x oraz x_prime.
+% - Błąd rozwiązania ||x_prime - x|| bliski zeru (<1e-10).
 
+disp('Test: Rozwiązywanie układu równań z zadaną macierzą trójdiagonalną');
+disp('Testujemy następującą sekwencję operacji:');
+disp('1. Definiujemy macierz A i wektor x');
+disp('2. Rozwiązujemy układ inv(A)*x = b');
+disp('3. Weryfikujemy rozwiązanie mnożąc A*b');
 
-    % Parametry testu
-    n = 10000; % Rozmiar macierzy
-    fprintf("Test dla dużej macierzy trójdiagonalnej (%d x %d):\n", n, n);
+% Definicja macierzy A i wektora x
+n = 5;
+a = ones(n-1, 1)';      % podprzekątna
+b = 4*ones(n, 1)';      % główna przekątna
+c = ones(n-1, 1)';      % nadprzekątna
+x = (1:n)';
 
-    % Generowanie macierzy trójdiagonalnej
-    [a, b, c] = generuj_macierz_trojdiagonalna(n);
+disp(' ');
+disp('Macierz A:');
+A = diag(b) + diag(c, 1) + diag(a, -1);
+disp(full(A));
+disp('Wektor x:');
+disp(x');
 
-    % Wektor prawej strony równania
-    x = rand(n, 1); % Losowy wektor wejściowy
+disp('Naciśnij dowolny klawisz, aby rozpocząć obliczenia...');
+pause;
 
-    % Rozwiązanie układu inv(A) * x = b
-    b_wynik = rozwiaz_invAx_rowne_b(a, b, c, x);
+% Rozwiązanie układu i weryfikacja
+disp('Rozwiązywanie układu równań...');
+b_wynik = rozwiaz_invAx_rowne_b(a, b, c, x);
+x_prime = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, b_wynik);
 
-    % Weryfikacja przez mnożenie inv(A) * b_wynik
-    x_prime = mnozenie_wejsciowy_trojdiagonal_wektor(a, b, c, b_wynik);
+% Prezentacja wyników
+disp('Wyniki testu:');
+disp('Wektor x:');
+disp(x');
+disp('Uzyskany wektor x_prime:');
+disp(x_prime');
 
-    % Obliczenie normy różnicy
-    norma_difference = norm(x_prime - x);
+err = norm(x_prime - x);
+disp(sprintf('Błąd rozwiązania: ||x_prime - x|| = %.2e', err));
 
-    % Wyniki testu
-    fprintf("|| x_primne - x || = %.15f\n", norma_difference);
-
-    % Podsumowanie testu
 end

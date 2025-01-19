@@ -7,7 +7,7 @@ function test4()
 % Jest to ważny przypadek szczególny, który weryfikuje zachowanie
 % własności macierzy jednostkowej podczas transformacji.
 
-disp('Test 4: Weryfikacja dla macierzy jednostkowej')
+disp('Test: Weryfikacja dla macierzy jednostkowej')
 disp('Macierz testowa:')
 disp('   [1  0  0  0]')
 disp('   [0  1  0  0]')

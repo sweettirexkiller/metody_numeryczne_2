@@ -10,7 +10,7 @@ function test()
 % Jeśli implementacja jest poprawna, różnica między wektorem
 % początkowym x a końcowym Q*Q^T*x powinna być bliska zeru.
 
-disp('Test 0: Weryfikacja własności Q*Q^T = I')
+disp('Test: Weryfikacja własności Q*Q^T = I')
 disp('Testujemy dla macierzy trójdiagonalnej:')
 disp('Dane wejściowe:')
 disp('a = [5, 6, 7]       (pod główną)')

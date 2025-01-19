@@ -3,7 +3,7 @@ function test0()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 
-disp('Test 0: Weryfikacja własności transformacji Householdera')
+disp('Test: Weryfikacja własności transformacji Householdera')
 disp('Dane testowe:')
 disp('   Wektor wejściowy x = [5; 1]')
 disp('Test sprawdza następujące własności:')

@@ -7,7 +7,7 @@ function test1()
 % Weryfikujemy, czy funkcja poprawnie rozkłada macierz wejściową na iloczyn
 % macierzy Q (jako iloczyn reflektorów Householdera) i R (górna trójdiagonalna).
 
-disp('Test 1: Rozkład QR macierzy trójdiagonalnej')
+disp('Test: Rozkład QR macierzy trójdiagonalnej')
 disp('Macierz testowa A o strukturze:')
 disp('   [1  8  0  0]    gdzie:')
 disp('   [5  2  9  0]    a = [5, 6, 7]     (pod przekątną)')

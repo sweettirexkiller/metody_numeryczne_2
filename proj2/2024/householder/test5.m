@@ -16,7 +16,7 @@ function test5()
 % 3. Wynik H\y powinien dokładnie odtwarzać wektor x, co potwierdza
 %    pełną odwracalność transformacji.
 
-disp('Test 5: Transformacja Householdera dla liczb zespolonych')
+disp('Test: Transformacja Householdera dla liczb zespolonych')
 disp('Testujemy wektor zespolony dwuwymiarowy:')
 disp('x = [5 + 3i; 1 - 2i]')
 disp('Naciśnij dowolny klawisz...')

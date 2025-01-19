@@ -7,7 +7,7 @@ function test()
 % trójdiagonalną. Używamy prostego przykładu 4x4, gdzie możemy
 % łatwo zweryfikować wyniki ręcznie.
 
-disp('Test 7: Mnożenie wektora przez macierz górną trójdiagonalną')
+disp('Test: Mnożenie wektora przez macierz górną trójdiagonalną')
 disp('Testujemy macierz R:')
 disp('   [1  2  3  0]    gdzie:')
 disp('   [0  4  5  6]    p = [1,4,7,9] (główna przekątna)')

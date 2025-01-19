@@ -6,7 +6,7 @@ function test2()
 % Test weryfikuje proces rekonstrukcji macierzy wejściowej poprzez
 % sprawdzenie, czy potrafimy odtworzyć oryginalną macierz A z rozkładu QR.
 
-disp('Test 2: Rekonstrukcja macierzy wejściowej')
+disp('Test: Rekonstrukcja macierzy wejściowej')
 a = [5, 6, 7]; b = [1, 2, 3, 4]; c = [8, 9, 10];
 [p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
 n = length(b);
