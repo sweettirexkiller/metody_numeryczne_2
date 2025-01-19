@@ -28,7 +28,7 @@ disp('Wartości własne:');
 disp(diag(D));
 
 % Różne parametry przesunięcia
-mu_values = [8, 10, 12];
+mu_values = [8, 10.0000001, 12];
 
 for i = 1:length(mu_values)
     fprintf('\nTest dla μ = %f:\n', mu_values(i));

@@ -33,8 +33,13 @@ x = y;
 % Rozwiązywanie układu metodą podstawiania wstecz
 % Zaczynamy od ostatniego równania i idziemy w górę
 for i = n:-1:3
-    % Obliczenie i-tej niewiadomej
-    x(i) = x(i) / p(i);
+    if abs(p(i)) < eps
+        % Obsługa przypadku bliskiego zeru
+        x(i) = 0;  % lub inna sensowna wartość
+    else
+        % Normalne dzielenie
+        x(i) = x(i) / p(i);
+    end
 
     % Podstawienie wartości do równań wyżej
     x(i-1) = x(i-1) - q(i-1)*x(i);
