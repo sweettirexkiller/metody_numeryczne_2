@@ -1,4 +1,4 @@
-function test()
+function test10()
 % Test dla funkcji mnozenie_wejsciowy_trojdiagonal_wektor
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767

@@ -1,4 +1,4 @@
-function test1()
+function test18()
 % Test dla funkcji RobHouseholderaTrzyDiagonalnie
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
@@ -21,7 +21,7 @@ a = [5, 6, 7]; b = [1, 2, 3, 4]; c = [8, 9, 10];
 A = diag(b) + diag(c, 1) + diag(a, -1);
 disp('Macierz wejściowa A:')
 disp(A)
-[p, q, s, H] = RobHouseholderaTrzyDiagonalnie(a, b, c);
+[p, q, s, ~] = RobHouseholderaTrzyDiagonalnie(a, b, c);
 R = diag(p) + diag(q, 1) + diag(s, 2);
 disp('Macierz górna R (wynik rozkładu):')
 disp(R)

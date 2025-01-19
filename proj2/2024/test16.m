@@ -1,4 +1,4 @@
-function test3()
+function test16()
 % Test dla funkcji RobHouseholderaTrzyDiagonalnie
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767

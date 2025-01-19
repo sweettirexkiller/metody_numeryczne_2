@@ -1,4 +1,4 @@
-function test5()
+function test14()
 % Test dla funkcji RobHousholdera
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
@@ -29,7 +29,7 @@ x = [x1; x2];
 
 % Wywołanie funkcji
 disp('Wykonujemy transformację Householdera:')
-[y1, H] = RobHousholdera(x1, x2);
+[~, H] = RobHouseholdera(x1, x2);
 y = H * x;
 disp('Macierz H (macierz Householdera):')
 disp(H)

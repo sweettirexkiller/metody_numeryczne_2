@@ -1,4 +1,4 @@
-function test()
+function test9()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %

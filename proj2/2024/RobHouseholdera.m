@@ -59,7 +59,7 @@ u = u / norm(u);
 
 % Konstrukcja macierzy Householdera
 I = eye(2);
-H = I - (2 * u * u') / (u' * u);
+H = I - (2 * (u) * u') / (u' * u);
 
 % Obliczenie transformacji wektora wejściowego
 y = H * x;

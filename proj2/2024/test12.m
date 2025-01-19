@@ -1,4 +1,4 @@
-function test()
+function test12()
 % Test dla funkcji RobHouseholderaTrzyDiagonalnie
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
@@ -32,7 +32,7 @@ disp('Naciśnij dowolny klawisz...')
 pause
 
 % Obliczenie rozkładu i wykonanie mnożeń
-[p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
+[~,~,~, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c);
 y = mnozenieQtransponowanePrzezWektor(Householdery, x);
 y_prime = mnozenieWektorPrzezQ(Householdery, y);
 

@@ -1,4 +1,4 @@
-function test()
+function test8()
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
 %
@@ -64,6 +64,6 @@ disp('Uzyskany wektor x_prime:');
 disp(x_prime');
 
 err = norm(x_prime - x);
-disp(sprintf('Błąd rozwiązania: ||x_prime - x|| = %.2e', err));
+fprintf('Błąd rozwiązania: ||x_prime - x|| = %.2e\n', err);
 
 end

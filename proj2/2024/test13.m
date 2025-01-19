@@ -1,4 +1,4 @@
-function test0()
+function test13()
 % Test dla funkcji RobHousholdera
 % Projekt 2, zadanie 14
 % Piotr Jankiewicz, 288767
@@ -16,7 +16,7 @@ pause
 
 % Dane wejściowe i obliczenia
 x = [5; 1];
-[y1, H] = RobHousholdera(x(1), x(2));
+[y1, H] = RobHouseholdera(x(1), x(2));
 y = [y1; 0];
 
 disp('Wyniki transformacji:')

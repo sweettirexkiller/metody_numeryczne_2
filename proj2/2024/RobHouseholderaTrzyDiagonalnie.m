@@ -24,14 +24,12 @@ function [p, q, s, Householdery] = RobHouseholderaTrzyDiagonalnie(a, b, c)
 % Inicjalizacja tablic wynikowych
 Householdery = zeros(2, 2, n - 1);
 s = zeros(1, n - 2);  % Diagonala dwa poziomy nad główną
-p = zeros(1, n);      % Główna przekątna wynikowa
-q = zeros(1, n - 1);  % Pierwsza przekątna nad główną
 
 % Iteracja po kolejnych kolumnach macierzy
 for i = 1:(n - 1)
     % Wyznaczenie transformacji Householdera dla bieżącej kolumny
     x = [b(i); a(i)];
-    [y1, H] = RobHousholdera(x(1), x(2));
+    [y1, H] = RobHouseholdera(x(1), x(2));
     Householdery(:, :, i) = H;
 
     if i < n - 1
